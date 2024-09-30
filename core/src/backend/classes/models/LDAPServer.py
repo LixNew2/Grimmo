@@ -15,7 +15,6 @@ class LDAPServer:
         - None
     """
     #instance Methodes
-
     def __init__(self, ldap_url : str, ldap_port : int, search_base: str) -> None:
         self.BASE = search_base;
         self.server = Server(ldap_url, ldap_port, get_info=ALL)
@@ -28,11 +27,12 @@ class LDAPServer:
     def login(self, ldap_login : str, ldap_password : str):
         try:
             self.CONN = Connection(self.server, ldap_login, ldap_password, auto_bind=True)
-            print("Connected !")
+            return True
         except:
             print("Error while connecting to the LDAP server")
+            return False
 
-    def check_groups(self, search_filter : str, group : str) -> None:
+    def get_groups(self, search_filter : str) -> None:
         #Get Distinguished Name of the user
         if self.CONN.search(self.BASE, f'(CN={search_filter})', attributes=['distinguishedName']):
             user_dn = self.CONN.entries[0].distinguishedName
@@ -43,11 +43,8 @@ class LDAPServer:
             #Search for the group
             try:
                 self.CONN.search(self.BASE, group_search_filter, attributes=['cn'])
-                #Check if the user is in the group and return True if he is
-                for entry in self.CONN.entries:
-                   if entry.cn == group:
-                        return True
-                return False
+                #Return list of user groups
+                return [group.cn for group in self.CONN.entries]
             except:
                 return print("An Error occured while searching for groups")
     
@@ -77,5 +74,3 @@ class LDAPServer:
             return False
 
     def set_group(self, cn : str, gp_name : str) -> bool : ...
-
-
