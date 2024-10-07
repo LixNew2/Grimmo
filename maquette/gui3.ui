@@ -905,7 +905,7 @@ p, li { white-space: pre-wrap; }
          <item>
           <layout class="QVBoxLayout" name="verticalLayout_19">
            <item>
-            <widget class="QLabel" name="label_ajout_password">
+            <widget class="QLabel" name="label_15">
              <property name="text">
               <string>mots de passe</string>
              </property>
@@ -932,7 +932,7 @@ p, li { white-space: pre-wrap; }
          <item>
           <layout class="QVBoxLayout" name="verticalLayout_20">
            <item>
-            <widget class="QLabel" name="label_ajout_agent_code_postal">
+            <widget class="QLabel" name="label_16">
              <property name="text">
               <string>code postal</string>
              </property>
@@ -950,7 +950,7 @@ p, li { white-space: pre-wrap; }
          <item>
           <layout class="QVBoxLayout" name="verticalLayout_17">
            <item>
-            <widget class="QLabel" name="label_ajout_agent_mail">
+            <widget class="QLabel" name="label_13">
              <property name="text">
               <string>adresse mail</string>
              </property>
@@ -964,7 +964,7 @@ p, li { white-space: pre-wrap; }
          <item>
           <layout class="QVBoxLayout" name="verticalLayout_18">
            <item>
-            <widget class="QLabel" name="label_ajout_agent_telephone">
+            <widget class="QLabel" name="label_14">
              <property name="text">
               <string>telephone</string>
              </property>
@@ -978,7 +978,7 @@ p, li { white-space: pre-wrap; }
          <item>
           <layout class="QVBoxLayout" name="verticalLayout_16">
            <item>
-            <widget class="QLabel" name="label_ajout_agent_ville">
+            <widget class="QLabel" name="label_12">
              <property name="text">
               <string>ville</string>
              </property>
@@ -996,7 +996,7 @@ p, li { white-space: pre-wrap; }
          <item>
           <layout class="QVBoxLayout" name="verticalLayout_13">
            <item>
-            <widget class="QLabel" name="label_ajout_agent_nom">
+            <widget class="QLabel" name="label_9">
              <property name="text">
               <string>nom</string>
              </property>
@@ -1010,7 +1010,7 @@ p, li { white-space: pre-wrap; }
          <item>
           <layout class="QVBoxLayout" name="verticalLayout_14">
            <item>
-            <widget class="QLabel" name="label_ajou_ageent_prenom">
+            <widget class="QLabel" name="label_10">
              <property name="text">
               <string>prenom</string>
              </property>
@@ -1024,7 +1024,7 @@ p, li { white-space: pre-wrap; }
          <item>
           <layout class="QVBoxLayout" name="verticalLayout_15">
            <item>
-            <widget class="QLabel" name="label_ajout_agent_rue">
+            <widget class="QLabel" name="label_11">
              <property name="text">
               <string>rue</string>
              </property>

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>628</width>
-    <height>418</height>
+    <width>746</width>
+    <height>513</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,7 +15,7 @@
   </property>
   <widget class="QStackedWidget" name="stackedWidget">
    <property name="currentIndex">
-    <number>3</number>
+    <number>2</number>
    </property>
    <widget class="QWidget" name="page">
     <widget class="QWidget" name="verticalLayoutWidget_3">
@@ -90,8 +90,8 @@
       <rect>
        <x>10</x>
        <y>90</y>
-       <width>271</width>
-       <height>301</height>
+       <width>394</width>
+       <height>361</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -111,8 +111,8 @@
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>267</width>
-           <height>126</height>
+           <width>390</width>
+           <height>85</height>
           </rect>
          </property>
          <widget class="QGroupBox" name="tache_box">
@@ -271,7 +271,7 @@
          <x>0</x>
          <y>0</y>
          <width>261</width>
-         <height>311</height>
+         <height>383</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -500,8 +500,8 @@
       <rect>
        <x>0</x>
        <y>70</y>
-       <width>311</width>
-       <height>321</height>
+       <width>394</width>
+       <height>396</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -528,8 +528,8 @@
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>307</width>
-           <height>125</height>
+           <width>390</width>
+           <height>85</height>
           </rect>
          </property>
          <widget class="QGroupBox" name="tache_box_2">
@@ -650,32 +650,6 @@
     </widget>
    </widget>
    <widget class="QWidget" name="page_4">
-    <widget class="QWidget" name="horizontalLayoutWidget_2">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>0</y>
-       <width>631</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <layout class="QHBoxLayout" name="horizontalLayout_7">
-      <item>
-       <widget class="QPushButton" name="pushButton">
-        <property name="text">
-         <string>biens</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="pushButton_3">
-        <property name="text">
-         <string>agendas</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
     <widget class="QWidget" name="gridLayoutWidget_2">
      <property name="geometry">
       <rect>
