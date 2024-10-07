@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="page">
      <widget class="QWidget" name="verticalLayoutWidget_2">
@@ -458,7 +458,7 @@
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_12">
          <item>
-          <widget class="QLabel" name="label_viex_event_titre">
+          <widget class="QLabel" name="label_view_event_titre">
            <property name="text">
             <string>titre</string>
            </property>
