@@ -18,9 +18,15 @@
     <property name="geometry">
      <rect>
       <x>0</x>
+<<<<<<< HEAD
       <y>0</y>
       <width>1291</width>
       <height>741</height>
+=======
+      <y>100</y>
+      <width>1281</width>
+      <height>631</height>
+>>>>>>> 3cd4bba0c44026f66abb7bb7dcc3877d9c966a71
      </rect>
     </property>
     <property name="currentIndex">
@@ -47,13 +53,13 @@
         <number>450</number>
        </property>
        <property name="topMargin">
-        <number>200</number>
+        <number>150</number>
        </property>
        <property name="rightMargin">
         <number>450</number>
        </property>
        <property name="bottomMargin">
-        <number>200</number>
+        <number>300</number>
        </property>
        <item>
         <widget class="QLabel" name="title">
@@ -104,6 +110,7 @@
      </widget>
     </widget>
     <widget class="QWidget" name="home">
+<<<<<<< HEAD
      <widget class="QWidget" name="horizontalLayoutWidget">
       <property name="geometry">
        <rect>
@@ -791,6 +798,18 @@
         </widget>
        </item>
       </layout>
+=======
+     <widget class="QWidget" name="verticalLayoutWidget_3">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>1281</width>
+        <height>691</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_3"/>
+>>>>>>> 3cd4bba0c44026f66abb7bb7dcc3877d9c966a71
      </widget>
     </widget>
     <widget class="QWidget" name="add_agent">
@@ -892,6 +911,68 @@
       </layout>
      </widget>
     </widget>
+   </widget>
+   <widget class="QFrame" name="top_menu">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>10</y>
+      <width>1281</width>
+      <height>80</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="menu">
+     <item>
+      <widget class="QLabel" name="username">
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Username</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="home_home">
+       <property name="text">
+        <string>Accueuil</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="add_user_home">
+       <property name="text">
+        <string>Ajouter un utilisateur</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="view_home">
+       <property name="text">
+        <string>Voir les biens</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="agenda">
+       <property name="text">
+        <string>Agenda</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton">
+       <property name="text">
+        <string>Ajouter un bien</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
  </widget>
