@@ -1,4 +1,5 @@
 import psycopg2
+from typing import Union
 
 class Database:
     def __init__(self, host : str, db_name : str, user : str, pdw : str):
@@ -17,15 +18,16 @@ class Database:
                 user=self.user,
                 password=self.pdw
             )
+            self.CONN.autocommit = True
             self.cursor = self.CONN.cursor()
             return True
         except:
             return False
 
-    def query(self, query):
+    def query(self, query) -> list[Union[bool,object]]:
         try:
             self.cursor.execute(query)
-            return self.cursor
+            return [True, self.cursor]
         except Exception as e:
             self.CONN.rollback()
-            return e
+            return [False, e]
