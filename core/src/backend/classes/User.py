@@ -8,3 +8,4 @@ class User:
     last_name :str
     first_name : str
     phone : str
+    type : int

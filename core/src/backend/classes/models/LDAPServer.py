@@ -1,5 +1,5 @@
-from ldap3 import Server, Connection, ALL, MODIFY_ADD
-
+from ldap3 import Server, Connection, ALL, MODIFY_ADD, MODIFY_REPLACE
+import time
 class LDAPServer:
     """
     This class is used to interact with an LDAP server
@@ -33,7 +33,28 @@ class LDAPServer:
         except:
             print("Error while connecting to the LDAP server")
             return False
-        
+    
+    def change_password(self, cn_user, pdw) -> bool:
+        user_dn = f"CN={cn_user},OU=Users,OU=Grimmo,{self.BASE}"
+        if self.conn.extend.microsoft.modify_password(user_dn, pdw):
+            return [True]
+        return [False, self.CONN.result['description']]
+
+    def get_pdw_last_set(self, cn_user : str) -> str:
+        try:
+            # Get the attribut uid of the user
+            if self.CONN.search(self.BASE, f'(CN={cn_user})', attributes=['pwdLastSet']):
+                # Check if the user have uid attribute
+                if len(self.CONN.entries) > 0 and hasattr(self.CONN.entries[0], 'pwdLastSet'):
+                    # Return the uid
+                    return self.CONN.entries[0].uid.value
+                else:
+                    return None
+            else:
+                return None
+        except Exception as e:
+            print(e)
+            return None
         
     def get_groups(self, cn_user : str) -> list:
         #Get Distinguished Name of the user
@@ -83,8 +104,9 @@ class LDAPServer:
                 'sAMAccountName': user_id,
                 'userPrincipalName': f"{user_id}{self.DOMAIN}",
                 'displayName': full_name,
-                'userAccountControl': 514,
-                'uid' : str(uuid4)
+                'uid' : str(uuid4),
+                'pwdLastSet' : 0,
+                'userAccountControl' : 544
             }
 
             # User DN
@@ -107,7 +129,11 @@ class LDAPServer:
                     return False
 
                 # Active account
-                self.CONN.modify(user_dn, {'userAccountControl': [(MODIFY_ADD, [512])]})
+                """self.CONN.modify(user_dn, {'userAccountControl': [(MODIFY_REPLACE, [512])]})
+                if self.CONN.result['result'] == 0:
+                    print("ok")
+                else:
+                    print(self.CONN.result['description'])"""
 
                 return True
             else:

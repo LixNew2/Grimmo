@@ -17,7 +17,7 @@ user : User
 def _generate_uuid4() -> UUID:
     return uuid.uuid4()
 
-def login(LDAP_CNUSER, LDAP_PASSWORD, pages) -> bool:
+def login(LDAP_CNUSER, LDAP_PASSWORD, pages, username) -> bool:
     #Init the LDAP server
     global ldap_server, user, database
 
@@ -27,22 +27,12 @@ def login(LDAP_CNUSER, LDAP_PASSWORD, pages) -> bool:
                     CONFIG["LDAP"]["ldap_base"])
 
     #Try to login
-    if ldap_server.login(LDAP_CNUSER, LDAP_PASSWORD):
-        #Check if the user is in the group "Responsable"
-        print("Connected with LDAP")
-        
+    if ldap_server.login(LDAP_CNUSER, LDAP_PASSWORD):     
         #Get user data
         groups = ldap_server.get_groups(LDAP_CNUSER)
         uid = ldap_server.get_uid(LDAP_CNUSER)
-        if uid:
-            result = database.query(f"""
-                                        SELECT nom_agent, prenom_agent, tel_agent FROM USERS
-                                        WHERE users.uid = '{uid}';
-                                        """)
-            if result[0]:
-                values = result[1].fetchall()
-
-        user = User(LDAP_CNUSER, groups, uid, values[0][0], values[0][1], values[0][2])
+        
+        user = User(LDAP_CNUSER, groups, uid, None, None, None, 1)
 
         #Init the database
         database = Database(CONFIG["POSTGRES"]["host"],
@@ -54,14 +44,25 @@ def login(LDAP_CNUSER, LDAP_PASSWORD, pages) -> bool:
         #Try to connect to databse
         if database.connect():
             print("Connected to the Database")
+            if uid:
+                result = database.query(f"SELECT nom_user, prenom_user, tel_user, type_user FROM Users WHERE Users.uid_user = '{uid}';")
+
+                if result[0]:
+                    values = result[1].fetchall()
+
+                    user.last_name = values[0][0]
+                    user.first_name = values[0][1]
+                    user.phone = values[0][2]
+                    user.type = values[0][3]
+            
             #Display success
             """display success"""
-
     else:
         #Display error
         """display error"""
         return False
     
+    username.setText(LDAP_CNUSER)
     pages.setCurrentIndex(1)
     return True
 
@@ -77,14 +78,16 @@ def _add_user_to_ad(last_name, first_name, password, gp_name, uuid4) -> bool:
     return ldap_server.add_user(last_name, first_name, password, gp_name, uuid4)
 
 @private
-def _add_user_to_db(uuid4, last_name, first_name, phone) -> bool :
-    query = f"INSERT INTO users VALUES ({uuid4}, {last_name}, {first_name}, {phone})"
+def _add_user_to_db(uuid4, last_name, first_name, phone, type) -> bool :
+    query = f"INSERT INTO Users VALUES ('{uuid4}', '{last_name}', '{first_name}', '{phone}', '{type}');"
     return database.query(query)[0]
 
 def add_user(last_name, first_name, password, phone, gp_name) -> bool :
-    if "Responsable" in user.groups:
+    print(user.type)
+    if user.type == 0:
+        print("User in creation")
         uuid4 = str(_generate_uuid4())
         if _add_user_to_ad(last_name, first_name, password, gp_name, uuid4):
-            if _add_user_to_db(uuid4, last_name, first_name, phone):
+            if _add_user_to_db(uuid4, last_name, first_name, phone, 0 if gp_name == "Responsable" else 1):
                 return True
     return False

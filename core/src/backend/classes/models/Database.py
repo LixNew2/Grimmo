@@ -18,6 +18,7 @@ class Database:
                 user=self.user,
                 password=self.pdw
             )
+            self.CONN.autocommit = True
             self.cursor = self.CONN.cursor()
             return True
         except:
