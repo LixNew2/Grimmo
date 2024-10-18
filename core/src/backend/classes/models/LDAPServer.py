@@ -30,17 +30,19 @@ class LDAPServer:
             #Instanciate the connection
             self.CONN = Connection(self.server, ldap_login, ldap_password, auto_bind=True)
             return True
-        except:
+            
+        except Exception as e:
+            print(e)
             print("Error while connecting to the LDAP server")
             return False
     
-    def change_password(self, cn_user, pdw) -> bool:
+    """def change_password(self, cn_user, pdw) -> bool:
         user_dn = f"CN={cn_user},OU=Users,OU=Grimmo,{self.BASE}"
         if self.conn.extend.microsoft.modify_password(user_dn, pdw):
             return [True]
-        return [False, self.CONN.result['description']]
+        return [False, self.CONN.result['description']]"""
 
-    def get_pdw_last_set(self, cn_user : str) -> str:
+    """def get_pdw_last_set(self, cn_user : str) -> str:
         try:
             # Get the attribut uid of the user
             if self.CONN.search(self.BASE, f'(CN={cn_user})', attributes=['pwdLastSet']):
@@ -54,7 +56,7 @@ class LDAPServer:
                 return None
         except Exception as e:
             print(e)
-            return None
+            return None"""
         
     def get_groups(self, cn_user : str) -> list:
         #Get Distinguished Name of the user

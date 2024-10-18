@@ -24,8 +24,10 @@ class UI(QMainWindow):
         self.username_login = self.findChild(QLineEdit, "username_login")
         self.password_login = self.findChild(QLineEdit, "password_login")
 
-
         self.add_user_home = self.findChild(QPushButton, "add_user_home")
+        self.view_home = self.findChild(QPushButton, "view_home")
+        self.aganda_home = self.findChild(QPushButton, "agenda")
+        self.add_good_home = self.findChild(QPushButton, "add_good")
         
         self.add_user_btn = self.findChild(QPushButton, "add_user_btn")
         self.last_name_add_user = self.findChild(QLineEdit, "last_name_add_user")
@@ -37,7 +39,10 @@ class UI(QMainWindow):
         #Actions
         self.home.clicked.connect(lambda : self.pages.setCurrentIndex(1))
         self.connect_to_ldap_btn.clicked.connect(lambda : login(self.username_login.text(), self.password_login.text(), self.pages, self.username, self.menu))
-        self.add_user_home.clicked.connect(lambda : self.pages.setCurrentIndex(2))
+        self.add_user_home.clicked.connect(lambda : self.pages.setCurrentIndex(5))
+        self.view_home.clicked.connect(lambda : self.pages.setCurrentIndex(4))
+        self.aganda_home.clicked.connect(lambda : self.pages.setCurrentIndex(3))
+        self.add_good_home.clicked.connect(lambda : self.pages.setCurrentIndex(2))
         self.add_user_btn.clicked.connect(lambda : add_user(self.last_name_add_user.text(), self.first_name_add_user.text(), self.password_add_user.text(), self.phone_add_user.text(), self.groups_add_user.currentText()))
 
         #Display

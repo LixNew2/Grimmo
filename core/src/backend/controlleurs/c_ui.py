@@ -1,5 +1,3 @@
-
-
 from core.src.backend.classes.models.LDAPServer import LDAPServer
 from core.src.backend.classes.models.Database import Database
 from core.src.backend.config.config import CONFIG
@@ -9,7 +7,10 @@ from core.src.backend.classes.User import User
 import uuid
 from uuid import UUID
 
-ldap_server : LDAPServer
+ldap_server = LDAPServer(CONFIG["LDAP"]["ldap_url"],
+                    int(CONFIG["LDAP"]["ldap_port"]),
+                    CONFIG["LDAP"]["ldap_domain"],
+                    CONFIG["LDAP"]["ldap_base"])
 database : Database
 user : User
 
@@ -20,11 +21,6 @@ def _generate_uuid4() -> UUID:
 def login(LDAP_CNUSER, LDAP_PASSWORD, pages, username, menu) -> bool:
     #Init the LDAP server
     global ldap_server, user, database
-
-    ldap_server = LDAPServer(CONFIG["LDAP"]["ldap_url"],
-                    int(CONFIG["LDAP"]["ldap_port"]),
-                    CONFIG["LDAP"]["ldap_domain"],
-                    CONFIG["LDAP"]["ldap_base"])
 
     #Try to login
     if ldap_server.login(LDAP_CNUSER, LDAP_PASSWORD):     

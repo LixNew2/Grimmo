@@ -18,15 +18,9 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-<<<<<<< HEAD
       <y>0</y>
       <width>1291</width>
       <height>741</height>
-=======
-      <y>100</y>
-      <width>1281</width>
-      <height>631</height>
->>>>>>> 3cd4bba0c44026f66abb7bb7dcc3877d9c966a71
      </rect>
     </property>
     <property name="currentIndex">
@@ -110,65 +104,6 @@
      </widget>
     </widget>
     <widget class="QWidget" name="home">
-<<<<<<< HEAD
-     <widget class="QWidget" name="horizontalLayoutWidget">
-      <property name="geometry">
-       <rect>
-        <x>260</x>
-        <y>10</y>
-        <width>1021</width>
-        <height>80</height>
-       </rect>
-      </property>
-      <layout class="QHBoxLayout" name="horizontalLayout">
-       <item>
-        <widget class="QPushButton" name="add_user_home">
-         <property name="text">
-          <string>Ajouter un utilisateur</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="view_home">
-         <property name="text">
-          <string>Voir les biens</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="agenda">
-         <property name="text">
-          <string>Agenda</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="pushButton">
-         <property name="text">
-          <string>Ajouter un bien</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QLabel" name="username">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>35</y>
-        <width>111</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>12</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>Username</string>
-      </property>
-     </widget>
      <widget class="QWidget" name="horizontalLayoutWidget_3">
       <property name="geometry">
        <rect>
@@ -189,7 +124,7 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>634</width>
+            <width>635</width>
             <height>607</height>
            </rect>
           </property>
@@ -224,64 +159,6 @@
      </widget>
     </widget>
     <widget class="QWidget" name="add_bien">
-     <widget class="QWidget" name="horizontalLayoutWidget_4">
-      <property name="geometry">
-       <rect>
-        <x>260</x>
-        <y>10</y>
-        <width>1021</width>
-        <height>80</height>
-       </rect>
-      </property>
-      <layout class="QHBoxLayout" name="horizontalLayout_5">
-       <item>
-        <widget class="QPushButton" name="add_user_home_3">
-         <property name="text">
-          <string>Ajouter un utilisateur</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="view_home_3">
-         <property name="text">
-          <string>Voir les biens</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="agenda_3">
-         <property name="text">
-          <string>Agenda</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="pushButton_3">
-         <property name="text">
-          <string>Ajouter un bien</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QLabel" name="username_3">
-      <property name="geometry">
-       <rect>
-        <x>50</x>
-        <y>40</y>
-        <width>111</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>12</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>Username</string>
-      </property>
-     </widget>
      <widget class="QLabel" name="label_4">
       <property name="geometry">
        <rect>
@@ -558,65 +435,7 @@
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="page">
-     <widget class="QWidget" name="horizontalLayoutWidget_5">
-      <property name="geometry">
-       <rect>
-        <x>260</x>
-        <y>0</y>
-        <width>1021</width>
-        <height>80</height>
-       </rect>
-      </property>
-      <layout class="QHBoxLayout" name="horizontalLayout_6">
-       <item>
-        <widget class="QPushButton" name="add_user_home_4">
-         <property name="text">
-          <string>Ajouter un utilisateur</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="view_home_4">
-         <property name="text">
-          <string>Voir les biens</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="agenda_4">
-         <property name="text">
-          <string>Agenda</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="pushButton_4">
-         <property name="text">
-          <string>Ajouter un bien</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QLabel" name="username_4">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>30</y>
-        <width>111</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>12</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>Username</string>
-      </property>
-     </widget>
+    <widget class="QWidget" name="agenda_2">
      <widget class="QWidget" name="horizontalLayoutWidget_6">
       <property name="geometry">
        <rect>
@@ -678,64 +497,6 @@
      </widget>
     </widget>
     <widget class="QWidget" name="view_bien">
-     <widget class="QWidget" name="horizontalLayoutWidget_2">
-      <property name="geometry">
-       <rect>
-        <x>260</x>
-        <y>10</y>
-        <width>1021</width>
-        <height>80</height>
-       </rect>
-      </property>
-      <layout class="QHBoxLayout" name="horizontalLayout_2">
-       <item>
-        <widget class="QPushButton" name="add_user_home_2">
-         <property name="text">
-          <string>Ajouter un utilisateur</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="view_home_2">
-         <property name="text">
-          <string>Voir les biens</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="agenda_2">
-         <property name="text">
-          <string>Agenda</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="pushButton_2">
-         <property name="text">
-          <string>Ajouter un bien</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QLabel" name="username_2">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>40</y>
-        <width>111</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>12</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>Username</string>
-      </property>
-     </widget>
      <widget class="QWidget" name="verticalLayoutWidget_4">
       <property name="geometry">
        <rect>
@@ -798,18 +559,6 @@
         </widget>
        </item>
       </layout>
-=======
-     <widget class="QWidget" name="verticalLayoutWidget_3">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>1281</width>
-        <height>691</height>
-       </rect>
-      </property>
-      <layout class="QVBoxLayout" name="verticalLayout_3"/>
->>>>>>> 3cd4bba0c44026f66abb7bb7dcc3877d9c966a71
      </widget>
     </widget>
     <widget class="QWidget" name="add_agent">
@@ -966,7 +715,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="add_good">
        <property name="text">
         <string>Ajouter un bien</string>
        </property>
