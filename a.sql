@@ -1,1 +1,1 @@
-INSERT INTO BIENS VALUES ('dsfdsfsf', 'vcvcxvxvx', 'fgfhgfghfh', '26000', 0, 0.0, 0, 0.0, 0, 'rdghfyuluouiyukgjyfhdgsfsf')
+INSERT INTO EVENT VALUES (1, '04/11/2024', '12:00', 'test', 'test', '26000', 'valence', 'test');

@@ -122,3 +122,14 @@ def add_good(city, address, cp, type_good, surface, nbr_room, commendable_pursha
     uuid4 = str(_generate_uuid4())
     query = f"INSERT INTO BIENS VALUES ('{uuid4}', '{address}', '{city}', '{cp}', {type_good}, {surface}, {nbr_room}, {price}, {commendable_purshasable}, '{user.uid}');"
     return database.query(query)[0]
+
+def add_event(): ...
+
+def show_event(date, title, street, city, hours, cp) -> None:
+    selected_date = date.toString("dd/MM/yyyy")
+    query = f"SELECT * FROM EVENT WHERE EVENT.date_event = '{selected_date}';"
+    result = database.query(query)
+    
+    if result[0]:
+        values = result[1].fetchall()
+        print(values[0][2])

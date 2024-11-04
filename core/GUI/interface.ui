@@ -124,8 +124,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>98</width>
-            <height>28</height>
+            <width>635</width>
+            <height>607</height>
            </rect>
           </property>
          </widget>
@@ -146,8 +146,8 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>98</width>
-              <height>28</height>
+              <width>632</width>
+              <height>298</height>
              </rect>
             </property>
            </widget>
@@ -254,16 +254,6 @@
        <string>nb piece</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="add_surface_add_bien">
-      <property name="geometry">
-       <rect>
-        <x>482</x>
-        <y>370</y>
-        <width>321</width>
-        <height>22</height>
-       </rect>
-      </property>
-     </widget>
      <widget class="QLabel" name="label_9">
       <property name="geometry">
        <rect>
@@ -277,7 +267,7 @@
        <string>ville</string>
       </property>
      </widget>
-     <widget class="QRadioButton" name="location_add_bien_btnradio">
+     <widget class="QRadioButton" name="location_add_bien">
       <property name="geometry">
        <rect>
         <x>560</x>
@@ -290,7 +280,7 @@
        <string>location</string>
       </property>
      </widget>
-     <widget class="QRadioButton" name="acheter_add_bien_btnradio">
+     <widget class="QRadioButton" name="acheter_add_bien">
       <property name="geometry">
        <rect>
         <x>650</x>
@@ -301,6 +291,9 @@
       </property>
       <property name="text">
        <string>acheter</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
       </property>
      </widget>
      <widget class="QComboBox" name="add_type_add_bien">
@@ -313,10 +306,25 @@
        </rect>
       </property>
       <property name="currentText">
-       <string/>
+       <string>Appartement</string>
       </property>
+      <item>
+       <property name="text">
+        <string>Appartement</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Maison</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Terrain</string>
+       </property>
+      </item>
      </widget>
-     <widget class="QSpinBox" name="spinBox">
+     <widget class="QSpinBox" name="nbr_room_add_bien">
       <property name="geometry">
        <rect>
         <x>481</x>
@@ -329,27 +337,17 @@
        <number>999999999</number>
       </property>
      </widget>
-     <widget class="QPushButton" name="btnajouter_add_bien">
+     <widget class="QPushButton" name="btn_add_bien">
       <property name="geometry">
        <rect>
         <x>580</x>
-        <y>680</y>
+        <y>660</y>
         <width>93</width>
         <height>28</height>
        </rect>
       </property>
       <property name="text">
        <string>Ajouter</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="price_entry">
-      <property name="geometry">
-       <rect>
-        <x>580</x>
-        <y>530</y>
-        <width>101</width>
-        <height>20</height>
-       </rect>
       </property>
      </widget>
      <widget class="QLabel" name="mois_label">
@@ -370,6 +368,32 @@
        <string>/mois</string>
       </property>
      </widget>
+     <widget class="QSpinBox" name="add_surface_add_bien">
+      <property name="geometry">
+       <rect>
+        <x>480</x>
+        <y>380</y>
+        <width>321</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="maximum">
+       <number>999999999</number>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="price_entry_add_bien">
+      <property name="geometry">
+       <rect>
+        <x>480</x>
+        <y>520</y>
+        <width>321</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="maximum">
+       <number>999999999</number>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="agenda_2">
      <widget class="QWidget" name="horizontalLayoutWidget_6">
@@ -383,7 +407,11 @@
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_7">
        <item>
-        <widget class="QCalendarWidget" name="calendarWidget_2"/>
+        <widget class="QCalendarWidget" name="calendar">
+         <property name="gridVisible">
+          <bool>true</bool>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -397,7 +425,7 @@
        </rect>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -442,7 +470,7 @@
               <height>614</height>
              </rect>
             </property>
-            <widget class="QLabel" name="label_16">
+            <widget class="QLabel" name="calendar_title">
              <property name="geometry">
               <rect>
                <x>20</x>
@@ -465,7 +493,7 @@
               </rect>
              </property>
             </widget>
-            <widget class="QLabel" name="label_17">
+            <widget class="QLabel" name="calendar_street">
              <property name="geometry">
               <rect>
                <x>20</x>
@@ -478,7 +506,7 @@
               <string>rue</string>
              </property>
             </widget>
-            <widget class="QLabel" name="label_18">
+            <widget class="QLabel" name="calendar_city">
              <property name="geometry">
               <rect>
                <x>20</x>
@@ -491,7 +519,7 @@
               <string>ville</string>
              </property>
             </widget>
-            <widget class="QLabel" name="label_19">
+            <widget class="QLabel" name="calendar_cp">
              <property name="geometry">
               <rect>
                <x>20</x>
@@ -504,20 +532,7 @@
               <string>code postale</string>
              </property>
             </widget>
-            <widget class="QLabel" name="label_20">
-             <property name="geometry">
-              <rect>
-               <x>160</x>
-               <y>110</y>
-               <width>35</width>
-               <height>10</height>
-              </rect>
-             </property>
-             <property name="text">
-              <string>date</string>
-             </property>
-            </widget>
-            <widget class="QLabel" name="label_21">
+            <widget class="QLabel" name="calendar_hours">
              <property name="geometry">
               <rect>
                <x>160</x>
@@ -756,8 +771,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>98</width>
-            <height>28</height>
+            <width>489</width>
+            <height>604</height>
            </rect>
           </property>
          </widget>

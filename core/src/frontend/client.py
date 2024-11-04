@@ -1,9 +1,9 @@
 import sys, os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..')))
 
-from core.src.backend.controlleurs.c_ui import login, add_user, disconnect, add_good
+from core.src.backend.controlleurs.c_ui import login, add_user, disconnect, add_good, add_event, show_event
 import sys
-from PyQt5.QtWidgets import QApplication, QFileDialog, QMainWindow, QPushButton, QLineEdit, QLabel, QComboBox, QMenuBar, QMenu, QRadioButton, QStackedWidget, QHBoxLayout,QFrame,QSpinBox
+from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QLineEdit, QLabel, QComboBox, QRadioButton, QStackedWidget, QFrame, QSpinBox, QCalendarWidget
 from PyQt5 import uic
 
 #Class
@@ -49,6 +49,13 @@ class UI(QMainWindow):
         self.btn_add_add_good = self.findChild(QPushButton,"btn_add_bien")
         self.month_label = self.findChild(QLabel, "mois_label")
 
+        self.calendar = self.findChild(QCalendarWidget, "calendar")
+        self.event_title = self.findChild(QLabel, "calendar_title")
+        self.event_street = self.findChild(QLabel, "calendar_street")
+        self.event_city = self.findChild(QLabel, "calendar_city")
+        self.event_hours = self.findChild(QLabel, "calendar_hours")
+        self.event_cp = self.findChild(QLabel, "calendar_cp")
+
         #Actions
         self.home.clicked.connect(lambda : self.pages.setCurrentIndex(1))
         self.connect_to_ldap_btn.clicked.connect(lambda : login(self.username_login.text(), self.password_login.text(), self.pages, self.username, self.menu))
@@ -61,6 +68,7 @@ class UI(QMainWindow):
         self.btn_add_add_good.clicked.connect(lambda : add_good(self.city_add_good.text(), self.street_add_good.text(), self.postal_add_good.text(), self.type_add_good.currentText(), self.surface_add_good.value(), self.nbr_room_add_good.value(), 1 if self.buy_add_good.isChecked() else 0, self.price_entry_add_bien.value()))
         self.buy_add_good.clicked.connect(lambda : self.month_label.hide())
         self.rental_add_good.clicked.connect(lambda : self.month_label.show())
+        self.calendar.clicked.connect(self.handle_date)
         
         #Display
         self.menu.hide()
@@ -69,6 +77,10 @@ class UI(QMainWindow):
 
         #Show App
         self.show()
+
+    #Bug : 
+    def handle_date(self, date):
+        show_event(date, self.event_title, self.event_street, self.event_city, self.event_hours, self.event_cp)
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
