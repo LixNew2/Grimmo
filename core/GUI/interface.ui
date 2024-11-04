@@ -254,16 +254,6 @@
        <string>nb piece</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="add_surface_add_bien">
-      <property name="geometry">
-       <rect>
-        <x>482</x>
-        <y>370</y>
-        <width>321</width>
-        <height>22</height>
-       </rect>
-      </property>
-     </widget>
      <widget class="QLabel" name="label_9">
       <property name="geometry">
        <rect>
@@ -277,7 +267,7 @@
        <string>ville</string>
       </property>
      </widget>
-     <widget class="QRadioButton" name="location_add_bien_btnradio">
+     <widget class="QRadioButton" name="location_add_bien">
       <property name="geometry">
        <rect>
         <x>560</x>
@@ -290,7 +280,7 @@
        <string>location</string>
       </property>
      </widget>
-     <widget class="QRadioButton" name="acheter_add_bien_btnradio">
+     <widget class="QRadioButton" name="acheter_add_bien">
       <property name="geometry">
        <rect>
         <x>650</x>
@@ -301,6 +291,9 @@
       </property>
       <property name="text">
        <string>acheter</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
       </property>
      </widget>
      <widget class="QComboBox" name="add_type_add_bien">
@@ -313,10 +306,25 @@
        </rect>
       </property>
       <property name="currentText">
-       <string/>
+       <string>Appartement</string>
       </property>
+      <item>
+       <property name="text">
+        <string>Appartement</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Maison</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Terrain</string>
+       </property>
+      </item>
      </widget>
-     <widget class="QSpinBox" name="spinBox">
+     <widget class="QSpinBox" name="nbr_room_add_bien">
       <property name="geometry">
        <rect>
         <x>481</x>
@@ -326,7 +334,7 @@
        </rect>
       </property>
      </widget>
-     <widget class="QPushButton" name="btnajouter_add_bien">
+     <widget class="QPushButton" name="btn_add_bien">
       <property name="geometry">
        <rect>
         <x>580</x>
@@ -337,16 +345,6 @@
       </property>
       <property name="text">
        <string>Ajouter</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="price_entry">
-      <property name="geometry">
-       <rect>
-        <x>580</x>
-        <y>530</y>
-        <width>101</width>
-        <height>20</height>
-       </rect>
       </property>
      </widget>
      <widget class="QLabel" name="mois_label">
@@ -365,6 +363,26 @@
       </property>
       <property name="text">
        <string>/mois</string>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="add_surface_add_bien">
+      <property name="geometry">
+       <rect>
+        <x>480</x>
+        <y>380</y>
+        <width>321</width>
+        <height>22</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="price_entry_add_bien">
+      <property name="geometry">
+       <rect>
+        <x>550</x>
+        <y>520</y>
+        <width>151</width>
+        <height>22</height>
+       </rect>
       </property>
      </widget>
     </widget>

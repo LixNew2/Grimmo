@@ -1,0 +1,1 @@
+INSERT INTO BIENS VALUES ('dsfdsfsf', 'vcvcxvxvx', 'fgfhgfghfh', '26000', 0, 0.0, 0, 0.0, 0, 'rdghfyuluouiyukgjyfhdgsfsf')
