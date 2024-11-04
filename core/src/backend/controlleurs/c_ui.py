@@ -90,10 +90,11 @@ def add_user(last_name, first_name, password, phone, gp_name) -> bool :
     return False
 
 def disconnect(menu, pages):
-    global ldap_server, database
+    global ldap_server, database, user
     ldap_server.disconnect()
     database.disconnect()
     menu.hide()
     pages.setCurrentIndex(0)
     ldap_server = None
     database = None
+    user = None
