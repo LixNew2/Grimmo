@@ -37,6 +37,9 @@ class UI(QMainWindow):
         self.password_add_user = self.findChild(QLineEdit, "password_add_user")
         self.groups_add_user = self.findChild(QComboBox, "groups_add_user")
 
+        
+
+
         #Actions
         self.home.clicked.connect(lambda : self.pages.setCurrentIndex(1))
         self.connect_to_ldap_btn.clicked.connect(lambda : login(self.username_login.text(), self.password_login.text(), self.pages, self.username, self.menu))

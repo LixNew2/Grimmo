@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="login">
      <widget class="QWidget" name="verticalLayoutWidget">
@@ -280,7 +280,7 @@
      <widget class="QRadioButton" name="location_add_bien_btnradio">
       <property name="geometry">
        <rect>
-        <x>480</x>
+        <x>560</x>
         <y>490</y>
         <width>95</width>
         <height>20</height>
@@ -293,110 +293,15 @@
      <widget class="QRadioButton" name="acheter_add_bien_btnradio">
       <property name="geometry">
        <rect>
-        <x>700</x>
+        <x>650</x>
         <y>490</y>
         <width>95</width>
         <height>20</height>
        </rect>
       </property>
       <property name="text">
-       <string>achter</string>
+       <string>acheter</string>
       </property>
-     </widget>
-     <widget class="QTabWidget" name="tabWidget">
-      <property name="geometry">
-       <rect>
-        <x>570</x>
-        <y>520</y>
-        <width>135</width>
-        <height>141</height>
-       </rect>
-      </property>
-      <property name="currentIndex">
-       <number>1</number>
-      </property>
-      <widget class="QWidget" name="acheter">
-       <attribute name="title">
-        <string>Tab 1</string>
-       </attribute>
-       <widget class="QLineEdit" name="prix_achtable_add_bien">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>30</y>
-          <width>113</width>
-          <height>22</height>
-         </rect>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_3">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>0</y>
-          <width>55</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>prix</string>
-        </property>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="location">
-       <attribute name="title">
-        <string>Tab 2</string>
-       </attribute>
-       <widget class="QLabel" name="label_10">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>10</y>
-          <width>55</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>prix</string>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="prix_loc_add_bien">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>30</y>
-          <width>113</width>
-          <height>22</height>
-         </rect>
-        </property>
-       </widget>
-       <widget class="QRadioButton" name="avec_meuble_add_bien_btnradio">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>60</y>
-          <width>95</width>
-          <height>20</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>avec meubles</string>
-        </property>
-       </widget>
-       <widget class="QRadioButton" name="sans_meuble_add_bien_btnradio">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>80</y>
-          <width>95</width>
-          <height>20</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>sans meubles</string>
-        </property>
-       </widget>
-      </widget>
      </widget>
      <widget class="QComboBox" name="add_type_add_bien">
       <property name="geometry">
@@ -432,6 +337,34 @@
       </property>
       <property name="text">
        <string>Ajouter</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="price_entry">
+      <property name="geometry">
+       <rect>
+        <x>580</x>
+        <y>530</y>
+        <width>101</width>
+        <height>20</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="mois_label">
+      <property name="geometry">
+       <rect>
+        <x>600</x>
+        <y>550</y>
+        <width>51</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>14</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>/mois</string>
       </property>
      </widget>
     </widget>
