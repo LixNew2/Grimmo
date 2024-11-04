@@ -3,7 +3,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../.
 
 from core.src.backend.controlleurs.c_ui import login, add_user, disconnect
 import sys
-from PyQt5.QtWidgets import QApplication, QFileDialog, QMainWindow, QPushButton, QLineEdit, QLabel, QComboBox, QMenuBar, QMenu, QRadioButton, QStackedWidget, QHBoxLayout,QFrame
+from PyQt5.QtWidgets import QApplication, QFileDialog, QMainWindow, QPushButton, QLineEdit, QLabel, QComboBox, QMenuBar, QMenu, QRadioButton, QStackedWidget, QHBoxLayout,QFrame,QSpinBox
 from PyQt5 import uic
 
 #Class
@@ -36,6 +36,17 @@ class UI(QMainWindow):
         self.phone_add_user = self.findChild(QLineEdit, "phone_add_user") 
         self.password_add_user = self.findChild(QLineEdit, "password_add_user")
         self.groups_add_user = self.findChild(QComboBox, "groups_add_user")
+
+        self.city_add_good = self.findChild(QLineEdit,"add_ville_add_bien")
+        self.street_add_good = self.findChild(QLineEdit,"add_rue_add_bien")
+        self.postal_add_good = self.findChild(QLineEdit,"add_postal_add_bien")
+        self.type_add_good = self.findChild(QComboBox,"add_type_add_bien")
+        self.surface_add_good = self.findChild(QLineEdit, "add_surface_add_bien")
+        self.nbr_room_add_good = self.findChild(QSpinBox, "nbr_room_add_bien")
+        self.rental_add_good = self.findChild(QRadioButton,"location_add_bien")
+        self.buy_add_good = self.findChild(QRadioButton, "acheter_add_bien")
+        self.price_entry_add_bien = self.findChild(QLineEdit, "price_entry_add_bien")
+        self.btn_add_add_good = self.findChild(QPushButton,"btn_ajouter_add_bien")
 
         
 
