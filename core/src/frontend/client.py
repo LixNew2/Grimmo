@@ -1,7 +1,7 @@
 import sys, os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..')))
 
-from core.src.backend.controlleurs.c_ui import login, add_user
+from core.src.backend.controlleurs.c_ui import login, add_user, disconnect
 import sys
 from PyQt5.QtWidgets import QApplication, QFileDialog, QMainWindow, QPushButton, QLineEdit, QLabel, QComboBox, QMenuBar, QMenu, QRadioButton, QStackedWidget, QHBoxLayout,QFrame
 from PyQt5 import uic
@@ -19,7 +19,8 @@ class UI(QMainWindow):
         self.username = self.findChild(QLabel, "username")
         self.home = self.findChild(QPushButton, "home_home")
         self.menu = self.findChild(QFrame, "top_menu")
-
+        self.disconnect_btn = self.findChild(QPushButton, "disconnect")
+        
         self.connect_to_ldap_btn = self.findChild(QPushButton, "connect_login")
         self.username_login = self.findChild(QLineEdit, "username_login")
         self.password_login = self.findChild(QLineEdit, "password_login")
@@ -44,6 +45,7 @@ class UI(QMainWindow):
         self.aganda_home.clicked.connect(lambda : self.pages.setCurrentIndex(3))
         self.add_good_home.clicked.connect(lambda : self.pages.setCurrentIndex(2))
         self.add_user_btn.clicked.connect(lambda : add_user(self.last_name_add_user.text(), self.first_name_add_user.text(), self.password_add_user.text(), self.phone_add_user.text(), self.groups_add_user.currentText()))
+        self.disconnect_btn.clicked.connect(lambda : disconnect(self.menu, self.pages))
 
         #Display
         self.menu.hide()

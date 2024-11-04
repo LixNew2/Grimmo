@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1287</width>
-    <height>741</height>
+    <height>727</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -683,6 +683,13 @@
        </property>
        <property name="text">
         <string>Username</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="disconnect">
+       <property name="text">
+        <string>Se déconnecter</string>
        </property>
       </widget>
      </item>

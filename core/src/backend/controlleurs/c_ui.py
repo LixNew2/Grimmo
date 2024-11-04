@@ -88,3 +88,12 @@ def add_user(last_name, first_name, password, phone, gp_name) -> bool :
             if _add_user_to_db(uuid4, last_name, first_name, phone, 0 if gp_name == "Responsable" else 1):
                 return True
     return False
+
+def disconnect(menu, pages):
+    global ldap_server, database
+    ldap_server.disconnect()
+    database.disconnect()
+    menu.hide()
+    pages.setCurrentIndex(0)
+    ldap_server = None
+    database = None

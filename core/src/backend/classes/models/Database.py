@@ -31,3 +31,10 @@ class Database:
         except Exception as e:
             self.CONN.rollback()
             return [False, e]
+        
+    def disconnect(self) -> None:
+        try:
+            self.CONN.close()
+        except:
+            print("An error occured while disconnecting from the Database")
+        print("Disconnected from the Database")
