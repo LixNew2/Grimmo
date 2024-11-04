@@ -1,7 +1,7 @@
 import sys, os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..')))
 
-from core.src.backend.controlleurs.c_ui import login, add_user, disconnect
+from core.src.backend.controlleurs.c_ui import login, add_user, disconnect, add_good
 import sys
 from PyQt5.QtWidgets import QApplication, QFileDialog, QMainWindow, QPushButton, QLineEdit, QLabel, QComboBox, QMenuBar, QMenu, QRadioButton, QStackedWidget, QHBoxLayout,QFrame,QSpinBox
 from PyQt5 import uic
@@ -41,15 +41,13 @@ class UI(QMainWindow):
         self.street_add_good = self.findChild(QLineEdit,"add_rue_add_bien")
         self.postal_add_good = self.findChild(QLineEdit,"add_postal_add_bien")
         self.type_add_good = self.findChild(QComboBox,"add_type_add_bien")
-        self.surface_add_good = self.findChild(QLineEdit, "add_surface_add_bien")
+        self.surface_add_good = self.findChild(QSpinBox, "add_surface_add_bien")
         self.nbr_room_add_good = self.findChild(QSpinBox, "nbr_room_add_bien")
         self.rental_add_good = self.findChild(QRadioButton,"location_add_bien")
         self.buy_add_good = self.findChild(QRadioButton, "acheter_add_bien")
-        self.price_entry_add_bien = self.findChild(QLineEdit, "price_entry_add_bien")
-        self.btn_add_add_good = self.findChild(QPushButton,"btn_ajouter_add_bien")
-
-        
-
+        self.price_entry_add_bien = self.findChild(QSpinBox, "price_entry_add_bien")
+        self.btn_add_add_good = self.findChild(QPushButton,"btn_add_bien")
+        self.month_label = self.findChild(QLabel, "mois_label")
 
         #Actions
         self.home.clicked.connect(lambda : self.pages.setCurrentIndex(1))
@@ -60,9 +58,14 @@ class UI(QMainWindow):
         self.add_good_home.clicked.connect(lambda : self.pages.setCurrentIndex(2))
         self.add_user_btn.clicked.connect(lambda : add_user(self.last_name_add_user.text(), self.first_name_add_user.text(), self.password_add_user.text(), self.phone_add_user.text(), self.groups_add_user.currentText()))
         self.disconnect_btn.clicked.connect(lambda : disconnect(self.menu, self.pages))
-
+        self.btn_add_add_good.clicked.connect(lambda : add_good(self.city_add_good.text(), self.street_add_good.text(), self.postal_add_good.text(), self.type_add_good.currentText(), self.surface_add_good.value(), self.nbr_room_add_good.value(), 1 if self.buy_add_good.isChecked() else 0, self.price_entry_add_bien.value()))
+        self.buy_add_good.clicked.connect(lambda : self.month_label.hide())
+        self.rental_add_good.clicked.connect(lambda : self.month_label.show())
+        
         #Display
         self.menu.hide()
+        self.pages.setCurrentIndex(0)
+        self.month_label.hide()
 
         #Show App
         self.show()

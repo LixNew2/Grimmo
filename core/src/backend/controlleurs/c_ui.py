@@ -41,7 +41,7 @@ def login(LDAP_CNUSER, LDAP_PASSWORD, pages, username, menu) -> bool:
         if database.connect():
             print("Connected to the Database")
             if uid:
-                result = database.query(f"SELECT nom_user, prenom_user, tel_user, type_user FROM Users WHERE Users.uid_user = '{uid}';")
+                result = database.query(f"SELECT last_name, first_name, phone, type_user FROM USERS WHERE USERS.uid_user = '{uid}';")
                 print(result[1])
                 if result[0]:
                     values = result[1].fetchall()
@@ -50,7 +50,6 @@ def login(LDAP_CNUSER, LDAP_PASSWORD, pages, username, menu) -> bool:
                     user.first_name = values[0][1]
                     user.phone = values[0][2]
                     user.type_u = values[0][3]
-            
             #Display success
             """display success"""
     else:
@@ -61,6 +60,13 @@ def login(LDAP_CNUSER, LDAP_PASSWORD, pages, username, menu) -> bool:
     menu.show()
     username.setText(LDAP_CNUSER)
     pages.setCurrentIndex(1)
+    print("UID : ", user.uid)
+    print("Groups : ", str(user.groups))
+    print("CN : ", user.cn)
+    print("Last Name : ", user.last_name)
+    print("First Name : ", user.first_name)
+    print("Phone : ", user.phone)
+    print("Type : ", str(user.type_u))
     return True
 
 @private
@@ -76,7 +82,7 @@ def _add_user_to_ad(last_name, first_name, password, gp_name, uuid4) -> bool:
 
 @private
 def _add_user_to_db(uuid4, last_name, first_name, phone, type) -> bool :
-    query = f"INSERT INTO Users VALUES ('{uuid4}', '{last_name}', '{first_name}', '{phone}', '{type}');"
+    query = f"INSERT INTO USERS VALUES ('{uuid4}', '{last_name}', '{first_name}', '{phone}', '{type}');"
     return database.query(query)[0]
 
 def add_user(last_name, first_name, password, phone, gp_name) -> bool :
@@ -98,3 +104,21 @@ def disconnect(menu, pages):
     ldap_server = None
     database = None
     user = None
+
+def add_good(city, address, cp, type_good, surface, nbr_room, commendable_purshasable, price) -> bool:
+    """
+    If buy is checked commendable_purshasable = 1
+    If rent is checked commendable_purshasable = 0
+    """
+    global user
+
+    if type_good == "Appartement":
+        type_good = 0
+    elif type_good == "Maison":
+        type_good = 1
+    else:
+        type_good = 2 #Terrain
+    print(commendable_purshasable)
+    uuid4 = str(_generate_uuid4())
+    query = f"INSERT INTO BIENS VALUES ('{uuid4}', '{address}', '{city}', '{cp}', {type_good}, {surface}, {nbr_room}, {price}, {commendable_purshasable}, '{user.uid}');"
+    return database.query(query)[0]
