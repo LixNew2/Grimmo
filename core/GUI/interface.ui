@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="login">
      <widget class="QWidget" name="verticalLayoutWidget">
@@ -552,8 +552,8 @@
      <widget class="QTabWidget" name="btn_add_event">
       <property name="geometry">
        <rect>
-        <x>800</x>
-        <y>100</y>
+        <x>790</x>
+        <y>110</y>
         <width>481</width>
         <height>591</height>
        </rect>
@@ -628,7 +628,7 @@
          <string>titre</string>
         </property>
        </widget>
-       <widget class="QLineEdit" name="add_title_event">
+       <widget class="QLineEdit" name="calendar_title">
         <property name="geometry">
          <rect>
           <x>30</x>
@@ -641,7 +641,7 @@
          <string/>
         </property>
        </widget>
-       <widget class="QLineEdit" name="add_rue_event">
+       <widget class="QLineEdit" name="calendar_street">
         <property name="geometry">
          <rect>
           <x>30</x>
@@ -651,7 +651,7 @@
          </rect>
         </property>
        </widget>
-       <widget class="QLineEdit" name="add_cpostal_event">
+       <widget class="QLineEdit" name="calendar_cp">
         <property name="geometry">
          <rect>
           <x>30</x>
@@ -661,7 +661,7 @@
          </rect>
         </property>
        </widget>
-       <widget class="QLineEdit" name="add_ville_event">
+       <widget class="QLineEdit" name="calendar_city">
         <property name="geometry">
          <rect>
           <x>30</x>
@@ -671,7 +671,7 @@
          </rect>
         </property>
        </widget>
-       <widget class="QTextEdit" name="add_description_event">
+       <widget class="QPlainTextEdit" name="add_description_event">
         <property name="geometry">
          <rect>
           <x>30</x>
@@ -733,44 +733,21 @@
          <string>ville</string>
         </property>
        </widget>
-       <widget class="QDateEdit" name="dateEdit_event">
+       <widget class="QTimeEdit" name="calendar_hours">
         <property name="geometry">
          <rect>
           <x>30</x>
-          <y>290</y>
-          <width>110</width>
-          <height>22</height>
-         </rect>
-        </property>
-       </widget>
-       <widget class="QTimeEdit" name="timeEdit_event">
-        <property name="geometry">
-         <rect>
-          <x>30</x>
-          <y>350</y>
+          <y>310</y>
           <width>118</width>
           <height>22</height>
          </rect>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_14">
-        <property name="geometry">
-         <rect>
-          <x>30</x>
-          <y>280</y>
-          <width>35</width>
-          <height>10</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>date</string>
         </property>
        </widget>
        <widget class="QLabel" name="label_15">
         <property name="geometry">
          <rect>
           <x>30</x>
-          <y>320</y>
+          <y>290</y>
           <width>35</width>
           <height>10</height>
          </rect>
@@ -779,7 +756,7 @@
          <string>heure</string>
         </property>
        </widget>
-       <widget class="QPushButton" name="btn_add_event_2">
+       <widget class="QPushButton" name="add_event">
         <property name="geometry">
          <rect>
           <x>180</x>

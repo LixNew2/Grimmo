@@ -96,19 +96,20 @@ class LDAPServer:
             full_name = f"{last_name.upper()} {first_name.upper()}"
             user_id = f"{first_name[0].upper()}{last_name[0].upper()}{last_name[1:].lower()}"
 
+            print(password)
             # Attributes of new user
             user_attributes = {
                 'objectClass': ['person', 'top', 'organizationalPerson', 'user'],
                 'cn': full_name,
                 'sn': last_name,
                 'givenName': first_name,
-                'userPassword': password,
+                'userPassword': str(password),
                 'sAMAccountName': user_id,
                 'userPrincipalName': f"{user_id}{self.DOMAIN}",
                 'displayName': full_name,
                 'uid' : str(uuid4),
-                'pwdLastSet' : 0,
-                'userAccountControl' : 544
+                'pwdLastSet' : -1,
+                'userAccountControl' : 512
             }
 
             # User DN

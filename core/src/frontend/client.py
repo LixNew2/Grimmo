@@ -1,9 +1,9 @@
 import sys, os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..')))
 
-from core.src.backend.controlleurs.c_ui import login, add_user, disconnect, add_good, add_event, home_page, goods_page, set_events
+from core.src.backend.controlleurs.c_ui import login, add_user, disconnect, add_good, add_event, home_page, goods_page, set_events, tab_clicked
 import sys
-from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QLineEdit, QLabel, QComboBox, QRadioButton, QStackedWidget, QFrame, QSpinBox, QCalendarWidget, QTableWidget, QTableWidgetItem
+from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QLineEdit, QLabel, QComboBox, QRadioButton, QStackedWidget, QFrame, QSpinBox, QCalendarWidget, QTableWidget, QTableWidgetItem, QTabWidget, QPlainTextEdit, QTimeEdit
 from PyQt5 import uic
 
 #Class
@@ -51,18 +51,21 @@ class UI(QMainWindow):
         self.btn_add_add_good = self.findChild(QPushButton,"btn_add_bien")
         self.month_label = self.findChild(QLabel, "mois_label")
         self.table = self.findChild(QTableWidget, "goods_table")
+        self.btn_add_event = self.findChild(QTabWidget, 'btn_add_event')
 
         self.calendar = self.findChild(QCalendarWidget, "calendar")
-        self.event_title = self.findChild(QLabel, "calendar_title")
-        self.event_street = self.findChild(QLabel, "calendar_street")
-        self.event_city = self.findChild(QLabel, "calendar_city")
-        self.event_hours = self.findChild(QLabel, "calendar_hours")
-        self.event_cp = self.findChild(QLabel, "calendar_cp")
+        self.event_title = self.findChild(QLineEdit, "calendar_title")
+        self.event_street = self.findChild(QLineEdit, "calendar_street")
+        self.event_city = self.findChild(QLineEdit, "calendar_city")
+        self.event_hours = self.findChild(QTimeEdit, "calendar_hours")
+        self.event_cp = self.findChild(QLineEdit, "calendar_cp")
+        self.event_desc = self.findChild(QPlainTextEdit, "add_description_event")
         self.agenda_table = self.findChild(QTableWidget, "agenda_table")
+        self.add_event = self.findChild(QPushButton,"add_event")
 
         #Actions
-        self.home.clicked.connect(lambda : home_page(self.pages, self.good_table_home, self.aganda_table_home, QTableWidgetItem))
-        self.connect_to_ldap_btn.clicked.connect(lambda : login(self.username_login.text(), self.password_login.text(), self.pages, self.username, self.menu, self.agenda_table, self.aganda_table_home, QTableWidgetItem))
+        self.home.clicked.connect(lambda : home_page(self.pages, self.good_table_home, self.aganda_table_home, QTableWidgetItem, self.add_user_home))
+        self.connect_to_ldap_btn.clicked.connect(lambda : login(self.username_login.text(), self.password_login.text(), self.pages, self.username, self.menu, self.good_table_home, self.aganda_table_home, QTableWidgetItem, self.add_user_home))
         self.add_user_home.clicked.connect(lambda : self.pages.setCurrentIndex(5))
         self.view_home.clicked.connect(lambda : goods_page(self.pages, self.table, QTableWidgetItem))
         self.aganda_home.clicked.connect(lambda : self.pages.setCurrentIndex(3))
@@ -73,7 +76,9 @@ class UI(QMainWindow):
         self.buy_add_good.clicked.connect(lambda : self.month_label.hide())
         self.rental_add_good.clicked.connect(lambda : self.month_label.show())
         self.calendar.clicked.connect(self.handle_date)
-        
+        self.add_event.clicked.connect(lambda : add_event(self.calendar.selectedDate(), self.event_hours.time(), self.event_desc.toPlainText(), self.event_street.text(), self.event_cp.text(), self.event_city.text(), self.event_title.text()))
+        self.btn_add_event.tabBarClicked.connect(self.set_tab_clicked)
+
         #Display
         self.menu.hide()
         self.pages.setCurrentIndex(0)
@@ -82,8 +87,15 @@ class UI(QMainWindow):
         #Show App
         self.show()
 
+    def set_tab_clicked(self):
+        global tab_clicked
+        tab_clicked = self.btn_add_event.currentIndex()
+
     def handle_date(self, date):
-        set_events(self.agenda_table, QTableWidgetItem, date)
+        global tab_clicked
+        print(tab_clicked)
+        if tab_clicked == 1:
+            set_events(self.agenda_table, QTableWidgetItem, date)
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
