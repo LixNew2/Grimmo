@@ -153,5 +153,3 @@ class LDAPServer:
         except:
             print("An error occured while disconnecting from the LDAP server")
         print("Disconnected from the LDAP server")
-
-    def set_group(self, cn : str, gp_name : str) -> bool : ...

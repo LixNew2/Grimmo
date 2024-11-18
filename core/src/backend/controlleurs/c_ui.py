@@ -74,6 +74,7 @@ def add_good(city, address, cp, type_good, surface, nbr_room, commendable_pursha
     query = f"INSERT INTO BIENS VALUES ('{uuid4}', '{address}', '{city}', '{cp}', {type_good}, {surface}, {nbr_room}, {price}, {commendable_purshasable}, '{user.uid}');"
     return database.query(query)[0]
 
+@private
 def get_goods():
     if user.type_u == 0:
         query = "SELECT * FROM BIENS;"
@@ -86,6 +87,7 @@ def get_goods():
         values = result[1].fetchall()
         return values
 
+
 def add_event(date, hours, desc, street, cp, city, title): 
     if (date == None or hours == None or desc == "" or street == "" or cp == "" or city == "" or title == ""):
         return False
@@ -94,6 +96,7 @@ def add_event(date, hours, desc, street, cp, city, title):
     query = f"INSERT INTO EVENT VALUES ('{uuid4}', '{date.toString('dd/MM/yyyy')}', '{hours.toString('HH:mm')}', '{desc}', '{street}', {cp}, '{city}', '{title}', '{user.uid}');"
     print(database.query(query)[1])
 
+@private
 def get_events(date = None) -> None:
     if date == None:
         if user.type_u == 0:

@@ -1,2 +1,5 @@
 ldap3
-confoigparser
+configparser
+psycopg2
+private
+PyQt5
