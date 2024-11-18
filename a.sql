@@ -1,1 +1,0 @@
-INSERT INTO EVENT VALUES ('2', '18-11-2024', "12:00", 'test', 'test', 26000, 'valence', 'test')
