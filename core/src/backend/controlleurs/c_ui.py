@@ -20,7 +20,6 @@ tab_clicked = 1
 def _generate_uuid4() -> UUID:
     return uuid.uuid4()
 
-
 @private
 def _check_user_groups(search) -> bool:
     for group in user.groups:
