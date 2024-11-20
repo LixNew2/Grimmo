@@ -4,7 +4,7 @@ from core.src.backend.config.config import CONFIG
 from PrivateCode import private
 from core.src.backend.classes.User import User
 
-import uuid
+import uuid, time, threading
 from uuid import UUID
 
 ldap_server = LDAPServer(CONFIG["LDAP"]["ldap_url"],
@@ -36,13 +36,22 @@ def _add_user_to_db(uuid4, last_name, first_name, phone, type) -> bool :
     query = f"INSERT INTO USERS VALUES ('{uuid4}', '{last_name}', '{first_name}', '{phone}', '{type}');"
     return database.query(query)[0]
 
-def add_user(last_name, first_name, password, phone, gp_name) -> bool :
-    print(user.type_u)
+def add_user(last_name, first_name, password, phone, gp_name, error, success) -> bool :
+    if last_name.text() == "" or first_name.text() == "" or password.text() == "" or phone.text() == "" or gp_name.currentText() == "":
+        login_error = threading.Thread(target=display_message, args=(error,))
+        login_error.start()
+        return False
+    
     if user.type_u == 0:
-        print("User in creation")
         uuid4 = str(_generate_uuid4())
-        if _add_user_to_ad(last_name, first_name, password, gp_name, uuid4):
-            if _add_user_to_db(uuid4, last_name, first_name, phone, 0 if gp_name == "Responsable" else 1):
+        if _add_user_to_ad(last_name.text(), first_name.text(), password.text(), gp_name.currentText(), uuid4):
+            if _add_user_to_db(uuid4, last_name.text(), first_name.text(), phone.text(), 0 if gp_name.currentText() == "Responsable" else 1):
+                login_succes = threading.Thread(target=display_message, args=(success,))
+                login_succes.start()
+                last_name.setText("")
+                first_name.setText("")
+                password.setText("")
+                phone.setText("")
                 return True
     return False
 
@@ -55,22 +64,35 @@ def disconnect(menu, pages):
     database = None
     user = None
 
-def add_good(city, address, cp, type_good, surface, nbr_room, commendable_purshasable, price) -> bool:
+def add_good(city, address, cp, type_good, surface, nbr_room, commendable_purshasable, price, error, success) -> bool:
     """
     If buy is checked commendable_purshasable = 1
     If rent is checked commendable_purshasable = 0
     """
     global user
 
-    if type_good == "Appartement":
+    if city.text() == "" or address.text() == "" or cp.text() == "" or type_good.currentText() == "" or nbr_room.value() == 0 or surface.value() == 0 or price.value() == 0:
+        add_good_error = threading.Thread(target=display_message, args=(error,))
+        add_good_error.start()
+        return False
+
+    if type_good.currentText() == "Appartement":
         type_good = 0
-    elif type_good == "Maison":
+    elif type_good.currentText() == "Maison":
         type_good = 1
     else:
         type_good = 2 #Terrain
 
     uuid4 = str(_generate_uuid4())
-    query = f"INSERT INTO BIENS VALUES ('{uuid4}', '{address}', '{city}', '{cp}', {type_good}, {surface}, {nbr_room}, {price}, {commendable_purshasable}, '{user.uid}');"
+    query = f"INSERT INTO BIENS VALUES ('{uuid4}', '{address.text()}', '{city.text()}', '{cp.text()}', {type_good}, {surface.value()}, {nbr_room.value()}, {price.value()}, {1 if commendable_purshasable.isChecked() else 0}, '{user.uid}');"
+    add_good_succes = threading.Thread(target=display_message, args=(success,))
+    add_good_succes.start()
+    city.setText("")
+    address.setText("")
+    cp.setText("")
+    surface.setValue(0)
+    nbr_room.setValue(0)
+    price.setValue(0)
     return database.query(query)[0]
 
 @private
@@ -87,13 +109,24 @@ def get_goods():
         return values
 
 
-def add_event(date, hours, desc, street, cp, city, title): 
-    if (date == None or hours == None or desc == "" or street == "" or cp == "" or city == "" or title == ""):
+def add_event(date, hours, desc, street, cp, city, title, error, success, QDate, QTime): 
+    if (date.selectedDate() == None or hours.time() == None or desc.toPlainText() == "" or street.text() == "" or cp.text() == "" or city.text() == "" or title.text() == ""):
+        add_event_error = threading.Thread(target=display_message, args=(error,))
+        add_event_error.start()
         return False
     
     uuid4 = str(_generate_uuid4())
-    query = f"INSERT INTO EVENT VALUES ('{uuid4}', '{date.toString('dd/MM/yyyy')}', '{hours.toString('HH:mm')}', '{desc}', '{street}', {cp}, '{city}', '{title}', '{user.uid}');"
-    print(database.query(query)[1])
+    query = f"INSERT INTO EVENT VALUES ('{uuid4}', '{date.selectedDate().toString('dd/MM/yyyy')}', '{hours.time().toString('HH:mm')}', '{desc.toPlainText()}', '{street.text()}', '{cp.text()}', '{city.text()}', '{title.text()}', '{user.uid}');"
+    add_event_succes = threading.Thread(target=display_message, args=(success,))
+    add_event_succes.start()
+    date.setSelectedDate(QDate())
+    hours.setTime(QTime(0, 0))
+    desc.setPlainText("")
+    street.setText("")
+    cp.setText("")
+    city.setText("")
+    title.setText("")
+    return database.query(query)[0]
 
 @private
 def get_events(date = None) -> None:
@@ -207,9 +240,10 @@ def set_goods(table, QTableWidgetItem):
 
             table.setItem(i_row, i_column, QTableWidgetItem(str(column)))
         
-def login(LDAP_CNUSER, LDAP_PASSWORD, pages, username, menu, table1, table2, QTableWidgetItem, add_user_home) -> bool:
+def login(LDAP_CNUSER, LDAP_PASSWORD, pages, username, menu, table1, table2, QTableWidgetItem, add_user_home, error) -> bool:
     #Init the LDAP server
     global ldap_server, user, database
+    login_error = threading.Thread(target=display_message, args=(error,))
 
     #Try to login
     if ldap_server.login(LDAP_CNUSER, LDAP_PASSWORD):     
@@ -243,7 +277,8 @@ def login(LDAP_CNUSER, LDAP_PASSWORD, pages, username, menu, table1, table2, QTa
             """display success"""
     else:
         #Display error
-        """display error"""
+        print("no")
+        login_error.start()
         return False
     
     menu.show()
@@ -257,3 +292,8 @@ def login(LDAP_CNUSER, LDAP_PASSWORD, pages, username, menu, table1, table2, QTa
     print("Phone : ", user.phone)
     print("Type : ", str(user.type_u))
     return True
+
+def display_message(message):   
+    message.show()
+    time.sleep(3)
+    message.hide()

@@ -109,7 +109,7 @@ class LDAPServer:
                 'displayName': full_name,
                 'uid' : str(uuid4),
                 'pwdLastSet' : -1,
-                'userAccountControl' : 512
+                'userAccountControl' : 544
             }
 
             # User DN
