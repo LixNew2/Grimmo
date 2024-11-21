@@ -1,9 +1,9 @@
 import sys, os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..')))
 
-from core.src.backend.controlleurs.c_ui import login, add_user, disconnect, add_good, add_event, home_page, goods_page, set_events, tab_clicked
+from core.src.backend.controlleurs.c_ui import login, add_user, disconnect, add_good, add_event, home_page, goods_page, set_events, tab_clicked, delete_good, delete_event
 import sys
-from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QLineEdit, QLabel, QComboBox, QRadioButton, QStackedWidget, QFrame, QSpinBox, QCalendarWidget, QTableWidget, QTableWidgetItem, QTabWidget, QPlainTextEdit, QTimeEdit
+from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QLineEdit, QLabel, QComboBox, QRadioButton, QStackedWidget, QFrame, QSpinBox, QCalendarWidget, QTableWidget, QTableWidgetItem, QTabWidget, QPlainTextEdit, QTimeEdit, QMessageBox
 from PyQt5 import uic
 from PyQt5.QtCore import QTime, QDate
 
@@ -58,10 +58,12 @@ class UI(QMainWindow):
         self.price_entry_add_bien = self.findChild(QSpinBox, "price_entry_add_bien")
         self.btn_add_add_good = self.findChild(QPushButton,"btn_add_bien")
         self.month_label = self.findChild(QLabel, "mois_label")
-        self.table = self.findChild(QTableWidget, "goods_table")
         self.btn_add_event = self.findChild(QTabWidget, 'btn_add_event')
         self.error_add_good = self.findChild(QLabel, "error_add_goods")
         self.succes_add_good = self.findChild(QLabel, "succes_add_good")
+        self.succes_delete_good = self.findChild(QLabel, "delete_good_success")
+        self.error_delete_good = self.findChild(QLabel, "delete_good_error")
+
 
         #Calendar
         self.calendar = self.findChild(QCalendarWidget, "calendar")
@@ -75,6 +77,13 @@ class UI(QMainWindow):
         self.add_event = self.findChild(QPushButton,"add_event")
         self.error_add_event = self.findChild(QLabel, "error_add_event")
         self.succes_add_event = self.findChild(QLabel, "succes_add_event")
+        self.delete_event_btn = self.findChild(QPushButton, "delete_event_btn")
+        self.succes_delete_event = self.findChild(QLabel, "delete_event_success")
+        self.error_delete_event = self.findChild(QLabel, "delete_event_error")
+
+        #Goods
+        self.table = self.findChild(QTableWidget, "goods_table")
+        self.delete_good_btn = self.findChild(QPushButton, "delete_good_btn")
 
         #Actions
         self.home.clicked.connect(lambda : home_page(self.pages, self.good_table_home, self.aganda_table_home, QTableWidgetItem, self.add_user_home))
@@ -91,6 +100,8 @@ class UI(QMainWindow):
         self.calendar.clicked.connect(self.handle_date)
         self.add_event.clicked.connect(lambda : add_event(self.calendar, self.event_hours, self.event_desc, self.event_street, self.event_cp, self.event_city, self.event_title, self.error_add_event, self.succes_add_event, QDate, QTime))
         self.btn_add_event.tabBarClicked.connect(self.set_tab_clicked)
+        self.delete_good_btn.clicked.connect(lambda : delete_good(self.table, self.error_delete_good, self.succes_delete_good, QMessageBox))
+        self.delete_event_btn.clicked.connect(lambda : delete_event(self.agenda_table, self.error_delete_event, self.succes_delete_event, QMessageBox))
 
         #Display
         self.menu.hide()
@@ -103,6 +114,14 @@ class UI(QMainWindow):
         self.succes_add_user.hide()
         self.succes_add_good.hide()
         self.succes_add_event.hide()
+        self.table.hideColumn(8)
+        self.good_table_home.hideColumn(8)
+        self.succes_delete_good.hide()
+        self.error_delete_good.hide()
+        self.aganda_table_home.hideColumn(7)
+        self.agenda_table.hideColumn(7)
+        self.succes_delete_event.hide()
+        self.error_delete_event.hide()
 
         #Show App
         self.show()
