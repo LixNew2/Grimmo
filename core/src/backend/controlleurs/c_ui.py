@@ -38,7 +38,7 @@ def _add_user_to_db(uuid4, last_name, first_name, phone, type, password) -> bool
     if type == 0:
         query = f"CREATE USER {user_id} WITH PASSWORD '{password}'; GRANT INSERT, UPDATE, DELETE ON TABLE EVENT, BIENS TO {user_id};"
     else:
-        query = f"CREATE USER {user_id} WITH PASSWORD '{password}'; GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO {user_id};"
+        query = f"CREATE USER {user_id} WITH PASSWORD '{password}'; GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO {user_id}; ALTER USER {user_id} WITH SUPERUSER;"
     
     result = database.query(query)
     if result[0]:
@@ -270,14 +270,15 @@ def login(LDAP_CNUSER, LDAP_PASSWORD, pages, username, menu, table1, table2, QTa
         
         user = User(LDAP_CNUSER, groups, uid, None, None, None, 1)
 
-        last_name, first_name = LDAP_CNUSER.split(" ")
+        """last_name, first_name = LDAP_CNUSER.split(" ")
         user_id = f"{first_name[0]}{last_name}"
-        print(user_id)
+        print(user_id)"""
         
+        print(LDAP_CNUSER, LDAP_PASSWORD)
         #Init the database
         database = Database(CONFIG["POSTGRES"]["host"],
             CONFIG["POSTGRES"]["database"],
-            user_id,
+            LDAP_CNUSER.lower(),
             LDAP_PASSWORD)
             
         #Try to connect to databse
@@ -295,6 +296,9 @@ def login(LDAP_CNUSER, LDAP_PASSWORD, pages, username, menu, table1, table2, QTa
                     user.type_u = values[0][3]
             #Display success
             """display success"""
+        else:
+            print("An error occured while connecting to the Database")
+            return False
     else:
         #Display error
         print("no")
@@ -302,7 +306,7 @@ def login(LDAP_CNUSER, LDAP_PASSWORD, pages, username, menu, table1, table2, QTa
         return False
     
     menu.show()
-    username.setText(LDAP_CNUSER)
+    username.setText(user.first_name + " " + user.last_name)
     home_page(pages, table1, table2, QTableWidgetItem, add_user_home, view_user)
     print("UID : ", user.uid)
     print("Groups : ", str(user.groups))
@@ -453,9 +457,7 @@ def delete_user(table, success, error, QMessageBox):
     
     uuid4 = table.item(selected_item, 5).text()
 
-    last_name, first_name = table.item(selected_item, 0).text(), table.item(selected_item, 1).text()
-
-    if(ldap_server.delete_user(f"{last_name} {first_name}")):
+    if(ldap_server.delete_user(table.item(selected_item, 4).text())):
         query = f"DELETE FROM USERS WHERE USERS.uid_user = '{uuid4}'; REVOKE ALL PRIVILEGES ON ALL TABLES IN SCHEMA public FROM {table.item(selected_item, 4).text()}; DROP USER {table.item(selected_item, 4).text()};"
         result = database.query(query)
         if result[0]:

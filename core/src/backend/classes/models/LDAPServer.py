@@ -28,7 +28,7 @@ class LDAPServer:
     def login(self, ldap_login : str, ldap_password : str):
         try:
             #Instanciate the connection
-            self.CONN = Connection(self.server, ldap_login, ldap_password, auto_bind=True)
+            self.CONN = Connection(self.server, f"{ldap_login}{self.DOMAIN}", ldap_password, auto_bind=True)
             return True
             
         except Exception as e:
@@ -60,7 +60,7 @@ class LDAPServer:
         
     def get_groups(self, cn_user : str) -> list:
         #Get Distinguished Name of the user
-        if self.CONN.search(self.BASE, f'(CN={cn_user})', attributes=['distinguishedName']):
+        if self.CONN.search(self.BASE, f'(sAMAccountName={cn_user})', attributes=['distinguishedName']):
             user_dn = self.CONN.entries[0].distinguishedName
             
             #Group search filter
@@ -77,7 +77,7 @@ class LDAPServer:
     def get_uid(self, cn_user : str) -> str:
         try:
             # Get the attribut uid of the user
-            if self.CONN.search(self.BASE, f'(CN={cn_user})', attributes=['uid']):
+            if self.CONN.search(self.BASE, f'(sAMAccountName={cn_user})', attributes=['uid']):
                 # Check if the user have uid attribute
                 if len(self.CONN.entries) > 0 and hasattr(self.CONN.entries[0], 'uid'):
                     # Return the uid
@@ -157,7 +157,7 @@ class LDAPServer:
     def delete_user(self, cn_user : str) -> bool:
         print(cn_user)
         try:
-            if self.CONN.search(self.BASE, f'(CN={cn_user})', attributes=['distinguishedName']):
+            if self.CONN.search(self.BASE, f'(sAMAccountName={cn_user})', attributes=['distinguishedName']):
                 user_dn = self.CONN.entries[0].distinguishedName.value
 
                 self.CONN.delete(user_dn)
