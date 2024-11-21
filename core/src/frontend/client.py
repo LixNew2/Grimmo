@@ -111,6 +111,7 @@ class UI(QMainWindow):
         self.delete_event_btn.clicked.connect(lambda : delete_event(self.agenda_table, self.error_delete_event, self.succes_delete_event, QMessageBox))
         self.view_user.clicked.connect(lambda : users_page(self.pages, self.user_table, QTableWidgetItem))
         self.delete_user_btn.clicked.connect(lambda : delete_user(self.user_table, self.delete_user_success, self.delete_user_error, QMessageBox))
+        
         #Display
         self.menu.hide()
         self.pages.setCurrentIndex(0)

@@ -456,7 +456,7 @@ def delete_user(table, success, error, QMessageBox):
     last_name, first_name = table.item(selected_item, 0).text(), table.item(selected_item, 1).text()
 
     if(ldap_server.delete_user(f"{last_name} {first_name}")):
-        query = f"DELETE FROM USERS WHERE USERS.uid_user = '{uuid4}'; DROP USER {table.item(selected_item, 4).text()};"
+        query = f"DELETE FROM USERS WHERE USERS.uid_user = '{uuid4}'; REVOKE ALL PRIVILEGES ON ALL TABLES IN SCHEMA public FROM {table.item(selected_item, 4).text()}; DROP USER {table.item(selected_item, 4).text()};"
         result = database.query(query)
         if result[0]:
             table.removeRow(selected_item)

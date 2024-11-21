@@ -158,7 +158,7 @@ class LDAPServer:
         print(cn_user)
         try:
             if self.CONN.search(self.BASE, f'(CN={cn_user})', attributes=['distinguishedName']):
-                user_dn = self.CONN.entries[0].distinguishedName
+                user_dn = self.CONN.entries[0].distinguishedName.value
 
                 self.CONN.delete(user_dn)
                 return True
