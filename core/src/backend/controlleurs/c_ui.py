@@ -32,9 +32,21 @@ def _add_user_to_ad(last_name, first_name, password, gp_name, uuid4) -> bool:
     return ldap_server.add_user(last_name, first_name, password, gp_name, uuid4)
 
 @private
-def _add_user_to_db(uuid4, last_name, first_name, phone, type) -> bool :
-    query = f"INSERT INTO USERS VALUES ('{uuid4}', '{last_name}', '{first_name}', '{phone}', '{type}');"
-    return database.query(query)[0]
+def _add_user_to_db(uuid4, last_name, first_name, phone, type, password) -> bool :
+    user_id = f"{first_name[0].upper()}{last_name[0].upper()}{last_name[1:].lower()}"
+
+    if type == 0:
+        query = f"CREATE USER {user_id} WITH PASSWORD '{password}'; GRANT INSERT, UPDATE, DELETE ON TABLE EVENT, BIENS TO {user_id};"
+    else:
+        query = f"CREATE USER {user_id} WITH PASSWORD '{password}'; GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO {user_id};"
+    
+    result = database.query(query)
+    if result[0]:
+        query = f"INSERT INTO USERS VALUES ('{uuid4}', '{last_name}', '{first_name}', '{phone}', '{type}', '{user_id}');"
+        return database.query(query)[0]
+    else:
+        print(result[1])
+
 
 def add_user(last_name, first_name, password, phone, gp_name, error, success) -> bool :
     if last_name.text() == "" or first_name.text() == "" or password.text() == "" or phone.text() == "" or gp_name.currentText() == "":
@@ -44,7 +56,7 @@ def add_user(last_name, first_name, password, phone, gp_name, error, success) ->
     if user.type_u == 0:
         uuid4 = str(_generate_uuid4())
         if _add_user_to_ad(last_name.text(), first_name.text(), password.text(), gp_name.currentText(), uuid4):
-            if _add_user_to_db(uuid4, last_name.text(), first_name.text(), phone.text(), 0 if gp_name.currentText() == "Responsable" else 1):
+            if _add_user_to_db(uuid4, last_name.text(), first_name.text(), phone.text(), 0 if gp_name.currentText() == "Responsable" else 1, password.text()):
                 handle_message(success)
                 last_name.setText("")
                 first_name.setText("")
@@ -140,10 +152,10 @@ def get_events(date = None) -> None:
             query = f"SELECT * FROM EVENT WHERE EVENT.date_event = '{selected_date}'"
         else:
             print("ok")
-            query = f"SELECT * FROM EVENT WHERE EVENT.date_event = '{selected_date}' AND EVENT.uid_user = {user.uid};"
+            query = f"SELECT * FROM EVENT WHERE EVENT.date_event = '{selected_date}' AND EVENT.uid_user = '{user.uid}';"
         
         result = database.query(query)
-        
+
         if result[0]:
             return result[1].fetchall()
 
@@ -155,6 +167,7 @@ def set_events(table, QTableWidgetItem, date = None) -> None:
     else:
         events = get_events(date)
 
+    print(events)
     if events == None or events == []:
         return
     
@@ -185,9 +198,14 @@ def set_events(table, QTableWidgetItem, date = None) -> None:
 
             if i_column == 6:
                 break
-def home_page(pages, table1, table2, QTableWidgetItem, add_user_home):
+
+def home_page(pages, table1, table2, QTableWidgetItem, add_user_home, view_user):
     if user.type_u == 1: 
         add_user_home.hide()
+        view_user.hide()
+    else:
+        add_user_home.show()
+        view_user.show()
 
     pages.setCurrentIndex(1)
     set_goods(table1, QTableWidgetItem)
@@ -241,7 +259,7 @@ def set_goods(table, QTableWidgetItem):
             if i_column == 7:
                 break
 
-def login(LDAP_CNUSER, LDAP_PASSWORD, pages, username, menu, table1, table2, QTableWidgetItem, add_user_home, error) -> bool:
+def login(LDAP_CNUSER, LDAP_PASSWORD, pages, username, menu, table1, table2, QTableWidgetItem, add_user_home, error, view_user) -> bool:
     #Init the LDAP server
     global ldap_server, user, database
     #Try to login
@@ -252,12 +270,15 @@ def login(LDAP_CNUSER, LDAP_PASSWORD, pages, username, menu, table1, table2, QTa
         
         user = User(LDAP_CNUSER, groups, uid, None, None, None, 1)
 
+        last_name, first_name = LDAP_CNUSER.split(" ")
+        user_id = f"{first_name[0]}{last_name}"
+        print(user_id)
+        
         #Init the database
         database = Database(CONFIG["POSTGRES"]["host"],
             CONFIG["POSTGRES"]["database"],
-            #
-            CONFIG["POSTGRES"]["user"],
-            CONFIG["POSTGRES"]["password"])
+            user_id,
+            LDAP_PASSWORD)
             
         #Try to connect to databse
         if database.connect():
@@ -282,7 +303,7 @@ def login(LDAP_CNUSER, LDAP_PASSWORD, pages, username, menu, table1, table2, QTa
     
     menu.show()
     username.setText(LDAP_CNUSER)
-    home_page(pages, table1, table2, QTableWidgetItem, add_user_home)
+    home_page(pages, table1, table2, QTableWidgetItem, add_user_home, view_user)
     print("UID : ", user.uid)
     print("Groups : ", str(user.groups))
     print("CN : ", user.cn)
@@ -356,3 +377,87 @@ def delete_event(table, error, success, QMessageBox):
         handle_message(success)
     else:
         print(result[1])
+
+
+def get_user():
+    query = ""
+    if user.type_u == 0:
+        query = "SELECT * FROM USERS;"
+
+    result  = database.query(query)
+    
+    if result[0]:
+        values = result[1].fetchall()
+        return values
+    
+def set_user(table, QTableWidgetItem):
+    table.setRowCount(0)
+
+    users = get_user()
+
+    if users == None or users == [] or len(users) == 0:
+        return
+
+    
+    n_column = len(users[0]) 
+    n_row = len(users)
+
+    table.setRowCount(n_row)
+    table.setColumnCount(n_column)
+
+    i_row = -1
+    i_column = -1
+
+    for user in users:
+        i_row += 1
+        i_column = -1 
+        print(user)
+        for column in user:
+            if user.index(column) == 0:
+                table.setItem(i_row, 5, QTableWidgetItem(str(column)))
+                continue
+
+            i_column += 1
+
+
+            if i_column == 3:
+                if column == 1:
+                    column = "Agent"
+                else :
+                    column = "Responsable"
+        
+            table.setItem(i_row, i_column, QTableWidgetItem(str(column)))
+
+
+def users_page(pages, table, QTableWidgetItem):
+    pages.setCurrentIndex(5)
+    set_user(table, QTableWidgetItem)
+
+def delete_user(table, success, error, QMessageBox):
+    selected_item = table.currentRow()
+
+    if selected_item == -1:
+        handle_message(error)
+        return
+    
+    msg = QMessageBox()
+    msg.setIcon(QMessageBox.Warning)
+    msg.setText("Êtes-vous sur de vouloir supprimer cet utilisateur ?")
+    msg.setWindowTitle("Suppression d'un utilisateur")
+    msg.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
+
+    reponse_msg = msg.exec_()
+
+    if reponse_msg == QMessageBox.Cancel:
+        return
+    
+    uuid4 = table.item(selected_item, 5).text()
+
+    last_name, first_name = table.item(selected_item, 0).text(), table.item(selected_item, 1).text()
+
+    if(ldap_server.delete_user(f"{last_name} {first_name}")):
+        query = f"DELETE FROM USERS WHERE USERS.uid_user = '{uuid4}'; DROP USER {table.item(selected_item, 4).text()};"
+        result = database.query(query)
+        if result[0]:
+            table.removeRow(selected_item)
+            handle_message(success)

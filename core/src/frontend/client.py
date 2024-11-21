@@ -1,7 +1,7 @@
 import sys, os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..')))
 
-from core.src.backend.controlleurs.c_ui import login, add_user, disconnect, add_good, add_event, home_page, goods_page, set_events, tab_clicked, delete_good, delete_event
+from core.src.backend.controlleurs.c_ui import login, add_user, disconnect, add_good, add_event, home_page, goods_page, set_events, tab_clicked, delete_good, delete_event, users_page, delete_user
 import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QLineEdit, QLabel, QComboBox, QRadioButton, QStackedWidget, QFrame, QSpinBox, QCalendarWidget, QTableWidget, QTableWidgetItem, QTabWidget, QPlainTextEdit, QTimeEdit, QMessageBox
 from PyQt5 import uic
@@ -35,6 +35,7 @@ class UI(QMainWindow):
         self.add_good_home = self.findChild(QPushButton, "add_good")
         self.good_table_home = self.findChild(QTableWidget, "good_table_home")
         self.aganda_table_home = self.findChild(QTableWidget, "aganda_table_home")
+        self.view_user = self.findChild(QPushButton, "view_user")
         
         #Add Agent
         self.add_user_btn = self.findChild(QPushButton, "add_user_btn")
@@ -85,10 +86,16 @@ class UI(QMainWindow):
         self.table = self.findChild(QTableWidget, "goods_table")
         self.delete_good_btn = self.findChild(QPushButton, "delete_good_btn")
 
+        #View users
+        self.user_table = self.findChild(QTableWidget, "user_table")
+        self.delete_user_btn = self.findChild(QPushButton, "delete_user_btn")
+        self.delete_user_success = self.findChild(QLabel, "delete_user_success")
+        self.delete_user_error = self.findChild(QLabel, "delete_user_error")
+
         #Actions
-        self.home.clicked.connect(lambda : home_page(self.pages, self.good_table_home, self.aganda_table_home, QTableWidgetItem, self.add_user_home))
-        self.connect_to_ldap_btn.clicked.connect(lambda : login(self.username_login.text(), self.password_login.text(), self.pages, self.username, self.menu, self.good_table_home, self.aganda_table_home, QTableWidgetItem, self.add_user_home, self.error_login))
-        self.add_user_home.clicked.connect(lambda : self.pages.setCurrentIndex(5))
+        self.home.clicked.connect(lambda : home_page(self.pages, self.good_table_home, self.aganda_table_home, QTableWidgetItem, self.add_user_home, self.view_user))
+        self.connect_to_ldap_btn.clicked.connect(lambda : login(self.username_login.text(), self.password_login.text(), self.pages, self.username, self.menu, self.good_table_home, self.aganda_table_home, QTableWidgetItem, self.add_user_home, self.error_login, self.view_user))
+        self.add_user_home.clicked.connect(lambda : self.pages.setCurrentIndex(6))
         self.view_home.clicked.connect(lambda : goods_page(self.pages, self.table, QTableWidgetItem))
         self.aganda_home.clicked.connect(lambda : self.pages.setCurrentIndex(3))
         self.add_good_home.clicked.connect(lambda : self.pages.setCurrentIndex(2))
@@ -102,7 +109,8 @@ class UI(QMainWindow):
         self.btn_add_event.tabBarClicked.connect(self.set_tab_clicked)
         self.delete_good_btn.clicked.connect(lambda : delete_good(self.table, self.error_delete_good, self.succes_delete_good, QMessageBox))
         self.delete_event_btn.clicked.connect(lambda : delete_event(self.agenda_table, self.error_delete_event, self.succes_delete_event, QMessageBox))
-
+        self.view_user.clicked.connect(lambda : users_page(self.pages, self.user_table, QTableWidgetItem))
+        self.delete_user_btn.clicked.connect(lambda : delete_user(self.user_table, self.delete_user_success, self.delete_user_error, QMessageBox))
         #Display
         self.menu.hide()
         self.pages.setCurrentIndex(0)
@@ -122,6 +130,9 @@ class UI(QMainWindow):
         self.agenda_table.hideColumn(7)
         self.succes_delete_event.hide()
         self.error_delete_event.hide()
+        self.delete_user_success.hide()
+        self.delete_user_error.hide()
+        self.user_table.hideColumn(5)
 
         #Show App
         self.show()

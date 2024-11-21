@@ -153,3 +153,17 @@ class LDAPServer:
         except:
             print("An error occured while disconnecting from the LDAP server")
         print("Disconnected from the LDAP server")
+
+    def delete_user(self, cn_user : str) -> bool:
+        print(cn_user)
+        try:
+            if self.CONN.search(self.BASE, f'(CN={cn_user})', attributes=['distinguishedName']):
+                user_dn = self.CONN.entries[0].distinguishedName
+
+                self.CONN.delete(user_dn)
+                return True
+            else:
+                return False
+        except Exception as e:
+            print(e)
+            return False
