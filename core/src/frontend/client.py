@@ -1,7 +1,7 @@
 import sys, os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..')))
 
-from core.src.backend.controlleurs.c_ui import login, add_user, disconnect, add_good, add_event, home_page, goods_page, set_events, tab_clicked, delete_good, delete_event, users_page, delete_user, customer_page, proprio_page, add_customer, add_owner
+from core.src.backend.controlleurs.c_ui import login, add_user, disconnect, add_good, add_event, home_page, goods_page, set_events, tab_clicked, delete_good, delete_event, users_page, delete_user, customer_page, owner_page, add_customer, add_owner, add_good_page, delete_customer, delete_owner
 import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QLineEdit, QLabel, QComboBox, QRadioButton, QStackedWidget, QFrame, QSpinBox, QCalendarWidget, QTableWidget, QTableWidgetItem, QTabWidget, QPlainTextEdit, QTimeEdit, QMessageBox
 from PyQt5 import uic
@@ -68,6 +68,7 @@ class UI(QMainWindow):
         self.succes_add_good = self.findChild(QLabel, "succes_add_good")
         self.succes_delete_good = self.findChild(QLabel, "delete_good_success")
         self.error_delete_good = self.findChild(QLabel, "delete_good_error")
+        self.owner_combo_box = self.findChild(QComboBox, "owner_combo_box")
 
         #Calendar
         self.calendar = self.findChild(QCalendarWidget, "calendar")
@@ -98,7 +99,7 @@ class UI(QMainWindow):
         #View Customers
         self.table_customer = self.findChild(QTableWidget, "table_customer")
         self.success_customer = self.findChild(QLabel, "success_customer")
-        self.error_cutomer = self.findChild(QLabel, "error_cutomer")
+        self.error_customer = self.findChild(QLabel, "error_cutomer")
         self.delete_customer = self.findChild(QPushButton, "delete_customer")
 
         #View Proprio
@@ -131,10 +132,10 @@ class UI(QMainWindow):
         self.add_user_home.clicked.connect(lambda : self.pages.setCurrentIndex(6))
         self.view_home.clicked.connect(lambda : goods_page(self.pages, self.table, QTableWidgetItem))
         self.aganda_home.clicked.connect(lambda : self.pages.setCurrentIndex(3))
-        self.add_good_home.clicked.connect(lambda : self.pages.setCurrentIndex(2))
+        self.add_good_home.clicked.connect(lambda : add_good_page(self.pages, self.owner_combo_box))
         self.add_user_btn.clicked.connect(lambda : add_user(self.last_name_add_user, self.first_name_add_user, self.password_add_user, self.phone_add_user, self.groups_add_user, self.error_add_agent, self.succes_add_user))
         self.disconnect_btn.clicked.connect(lambda : disconnect(self.menu, self.pages))
-        self.btn_add_add_good.clicked.connect(lambda : add_good(self.city_add_good, self.street_add_good, self.postal_add_good, self.type_add_good, self.surface_add_good, self.nbr_room_add_good, self.buy_add_good, self.price_entry_add_bien, self.error_add_good, self.succes_add_good))
+        self.btn_add_add_good.clicked.connect(lambda : add_good(self.city_add_good, self.street_add_good, self.postal_add_good, self.type_add_good, self.surface_add_good, self.nbr_room_add_good, self.buy_add_good, self.price_entry_add_bien, self.error_add_good, self.succes_add_good, self.owner_combo_box))
         self.buy_add_good.clicked.connect(lambda : self.month_label.hide())
         self.rental_add_good.clicked.connect(lambda : self.month_label.show())
         self.calendar.clicked.connect(self.handle_date)
@@ -147,10 +148,12 @@ class UI(QMainWindow):
         self.add_customer.clicked.connect(lambda : self.pages.setCurrentIndex(7))
         self.view_customers.clicked.connect(lambda : customer_page(self.pages, self.table_customer, QTableWidgetItem))
         self.add_proprio.clicked.connect(lambda : self.pages.setCurrentIndex(9))
-        self.view_proprio.clicked.connect(lambda : proprio_page(self.pages, self.proprio_table, QTableWidgetItem))
+        self.view_proprio.clicked.connect(lambda : owner_page(self.pages, self.proprio_table, QTableWidgetItem))
         self.add_customer_btn.clicked.connect(lambda : add_customer(self.name_customer, self.first_name_customer, self.phone_customer, self.email_customer, self.error_add_customer, self.success_add_customer))
         self.add_proprio_btn.clicked.connect(lambda : add_owner(self.name_proprio, self.fisrt_name_proprio, self.phone_proprio, self.email_proprio, self.error_add_proprio, self.success_add_proprio))
-
+        self.delete_customer.clicked.connect(lambda : delete_customer(self.table_customer, self.success_customer, self.error_customer, QMessageBox))
+        self.delete_proprio.clicked.connect(lambda : delete_owner(self.proprio_table, self.success_proprio, self.error_proprio, QMessageBox))
+        
         #Display
         self.menu.hide()
         self.pages.setCurrentIndex(0)
@@ -162,8 +165,8 @@ class UI(QMainWindow):
         self.succes_add_user.hide()
         self.succes_add_good.hide()
         self.succes_add_event.hide()
-        self.table.hideColumn(8)
-        self.good_table_home.hideColumn(8)
+        self.table.hideColumn(9)
+        self.good_table_home.hideColumn(9)
         self.succes_delete_good.hide()
         self.error_delete_good.hide()
         self.aganda_table_home.hideColumn(7)
@@ -175,15 +178,14 @@ class UI(QMainWindow):
         self.user_table.hideColumn(5)
         self.success_customer.hide()
         self.error_cutomer.hide()
-        self.table_customer.hideColumn(4)
+        #self.table_customer.hideColumn(4)
         self.success_proprio.hide()
         self.error_proprio.hide()
-        #self.proprio_table.hideColumn(5)
+        #self.proprio_table.hideColumn(4)
         self.success_add_customer.hide()
         self.error_add_customer.hide()
         self.success_add_proprio.hide()
         self.error_add_proprio.hide()
-
 
         #Show App
         self.show()
