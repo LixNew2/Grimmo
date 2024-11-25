@@ -36,10 +36,10 @@ def _add_user_to_db(uuid4, last_name, first_name, phone, type, password) -> bool
     user_id = f"{first_name[0].upper()}{last_name[0].upper()}{last_name[1:].lower()}"
 
     if type == 0:
-        query = f"CREATE USER {user_id} WITH PASSWORD '{password}'; GRANT INSERT, UPDATE, DELETE ON TABLE EVENT, BIENS, CLIENT, PROPRIETAIRE TO {user_id};"
+        query = f"CREATE USER {user_id} WITH PASSWORD '{password}'; ALTER USER {user_id} WITH SUPERUSER;"
     else:
-        query = f"CREATE USER {user_id} WITH PASSWORD '{password}'; GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO {user_id}; ALTER USER {user_id} WITH SUPERUSER;"
-    
+        query = f"CREATE USER {user_id} WITH PASSWORD '{password}'; GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE EVENT, BIENS, CLIENT, PROPRIETAIRE, USERS, SUPERVISER TO {user_id};"
+
     result = database.query(query)
     if result[0]:
         query = f"INSERT INTO USERS VALUES ('{uuid4}', '{last_name}', '{first_name}', '{phone}', '{type}', '{user_id}');"
@@ -352,10 +352,11 @@ def delete_good(table, error, success, QMessageBox):
     if reponse_msg == QMessageBox.Cancel:
         return
     
-    uuid4 = table.item(selected_item, 8).text()
+    uuid4 = table.item(selected_item, 9).text()
 
     query = f"DELETE FROM BIENS WHERE BIENS.id_bien = '{uuid4}';"
     result = database.query(query)
+    
     if result[0]:
         table.removeRow(selected_item)
         handle_message(success)
@@ -509,6 +510,7 @@ def set_customer(table, QTableWidgetItem):
         print(customer)
         for column in customer:
             if customer.index(column) == 0:
+                print(column)
                 table.setItem(i_row, 4, QTableWidgetItem(str(column)))
                 continue
 
@@ -516,8 +518,8 @@ def set_customer(table, QTableWidgetItem):
         
             table.setItem(i_row, i_column, QTableWidgetItem(str(column)))
 
-        if i_column == 3:
-            break
+            if i_column == 3:
+                break
         
 def customer_page(pages, table, QTableWidgetItem):
     pages.setCurrentIndex(8)
@@ -531,7 +533,7 @@ def get_owner():
         query = f"SELECT PROPRIETAIRE.uid_proprio, PROPRIETAIRE.nom, PROPRIETAIRE.prenom, PROPRIETAIRE.email, PROPRIETAIRE.telephone FROM PROPRIETAIRE INNER JOIN SUPERVISER ON PROPRIETAIRE.uid_proprio = SUPERVISER.uid_proprio WHERE SUPERVISER.uid_user = '{user.uid}';"
 
     result = database.query(query)
-    
+    print(result[1])
     if result[0]:
         values = result[1].fetchall()
         return values
@@ -602,6 +604,9 @@ def add_owner(last_name, first_name, email, phone, error, success):
 def set_combo(combo):
     owners = get_owner()
 
+    if owners == None or owners == [] or len(owners) == 0:
+        return
+
     for owner in owners:
         combo.addItem(owner[1] + " " + owner[2], owner[0])
 
@@ -611,7 +616,7 @@ def add_good_page(pages, combo):
 
 def delete_customer(table, success, error, QMessageBox):
     selected_item = table.currentRow()
-
+    
     if selected_item == -1:
         handle_message(error)
         return
@@ -656,7 +661,7 @@ def delete_owner(table, success, error, QMessageBox):
     
     uuid4 = table.item(selected_item, 4).text()
     print(uuid4)
-    query = f"DELETE FROM PROPRIETAIRE WHERE PROPRIETAIRE.uid_proprio = '{uuid4}';"
+    query = f"DELETE FROM BIENS WHERE BIENS.uid_proprio = '{uuid4}'; DELETE FROM SUPERVISER WHERE SUPERVISER.uid_proprio = '{uuid4}'; DELETE FROM PROPRIETAIRE WHERE PROPRIETAIRE.uid_proprio = '{uuid4}';"
     result = database.query(query)
     print(result[1])
     if result[0]:
