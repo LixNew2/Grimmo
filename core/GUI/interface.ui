@@ -33,14 +33,21 @@ QPushButton:hover
    <widget class="QStackedWidget" name="pages">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>10</x>
       <y>-10</y>
-      <width>1291</width>
+      <width>1301</width>
       <height>741</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
     <property name="currentIndex">
-     <number>5</number>
+     <number>10</number>
     </property>
     <widget class="QWidget" name="login">
      <widget class="QLabel" name="title">
@@ -1851,7 +1858,7 @@ QPushButton:hover
        <rect>
         <x>0</x>
         <y>121</y>
-        <width>1271</width>
+        <width>1291</width>
         <height>541</height>
        </rect>
       </property>
@@ -1870,7 +1877,7 @@ QHeaderView::section:vertical {
 }</string>
       </property>
       <attribute name="horizontalHeaderDefaultSectionSize">
-       <number>253</number>
+       <number>257</number>
       </attribute>
       <column>
        <property name="text">
@@ -2276,6 +2283,738 @@ QLineEdit:focus {
       </property>
      </widget>
     </widget>
+    <widget class="QWidget" name="add_customer_2">
+     <widget class="QPushButton" name="add_customer_btn">
+      <property name="geometry">
+       <rect>
+        <x>620</x>
+        <y>520</y>
+        <width>75</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton
+{
+	color: rgb(255, 255, 255);
+	background-color:rgb(0, 123, 255);
+	border-radius: 5px;
+	height:20px;
+;
+}
+
+QPushButton:hover
+{
+	color: rgb(255, 255, 255);
+	background-color:rgb(0, 86, 210);
+	border-radius: 5px;
+	height:20px;
+}</string>
+      </property>
+      <property name="text">
+       <string>Ajouter</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="name_customer">
+      <property name="geometry">
+       <rect>
+        <x>480</x>
+        <y>289</y>
+        <width>351</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLineEdit {
+    background-color: #ffffff;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 4px 8px;
+    font-size: 11px;
+}
+
+/* Effet survol (hover) */
+QLineEdit:hover {
+    border: 1px solid rgb(0, 123, 255);
+}
+
+/* Focus (quand l'utilisateur clique dedans) */
+QLineEdit:focus {
+    border: 2px solid rgb(0, 123, 255);
+    background-color: #f0f8ff;
+}</string>
+      </property>
+      <property name="placeholderText">
+       <string>Nom</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="first_name_customer">
+      <property name="geometry">
+       <rect>
+        <x>480</x>
+        <y>340</y>
+        <width>351</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLineEdit {
+    background-color: #ffffff;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 4px 8px;
+    font-size: 11px;
+}
+
+/* Effet survol (hover) */
+QLineEdit:hover {
+    border: 1px solid rgb(0, 123, 255);
+}
+
+/* Focus (quand l'utilisateur clique dedans) */
+QLineEdit:focus {
+    border: 2px solid rgb(0, 123, 255);
+    background-color: #f0f8ff;
+}</string>
+      </property>
+      <property name="placeholderText">
+       <string>Prénom</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="email_customer">
+      <property name="geometry">
+       <rect>
+        <x>480</x>
+        <y>390</y>
+        <width>351</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLineEdit {
+    background-color: #ffffff;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 4px 8px;
+    font-size: 11px;
+}
+
+/* Effet survol (hover) */
+QLineEdit:hover {
+    border: 1px solid rgb(0, 123, 255);
+}
+
+/* Focus (quand l'utilisateur clique dedans) */
+QLineEdit:focus {
+    border: 2px solid rgb(0, 123, 255);
+    background-color: #f0f8ff;
+}</string>
+      </property>
+      <property name="placeholderText">
+       <string>Email</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="phone_customer">
+      <property name="geometry">
+       <rect>
+        <x>480</x>
+        <y>440</y>
+        <width>351</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLineEdit {
+    background-color: #ffffff;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 4px 8px;
+    font-size: 11px;
+}
+
+/* Effet survol (hover) */
+QLineEdit:hover {
+    border: 1px solid rgb(0, 123, 255);
+}
+
+/* Focus (quand l'utilisateur clique dedans) */
+QLineEdit:focus {
+    border: 2px solid rgb(0, 123, 255);
+    background-color: #f0f8ff;
+}</string>
+      </property>
+      <property name="placeholderText">
+       <string>Téléphone</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_19">
+      <property name="geometry">
+       <rect>
+        <x>590</x>
+        <y>210</y>
+        <width>161</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>16</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Ajouter un client</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="success_add_customer">
+      <property name="geometry">
+       <rect>
+        <x>600</x>
+        <y>560</y>
+        <width>131</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(16, 207, 0);</string>
+      </property>
+      <property name="text">
+       <string>Client bien ajouté !</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="error_add_customer">
+      <property name="geometry">
+       <rect>
+        <x>510</x>
+        <y>560</y>
+        <width>291</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 77, 79);</string>
+      </property>
+      <property name="text">
+       <string>Vous devez remplir toutes les information !</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="view_customer">
+     <widget class="QTableWidget" name="table_customer">
+      <property name="geometry">
+       <rect>
+        <x>5</x>
+        <y>111</y>
+        <width>1281</width>
+        <height>561</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QHeaderView::section {
+    background-color: rgb(0, 123, 255);
+    color: white;
+    padding: 4px;
+	border: 1px solid white;
+}
+
+/* Style pour les numéros de ligne (en-têtes verticales) */
+QHeaderView::section:vertical {
+    background-color: rgb(0, 123, 255);
+    color: white;
+}</string>
+      </property>
+      <attribute name="horizontalHeaderDefaultSectionSize">
+       <number>318</number>
+      </attribute>
+      <column>
+       <property name="text">
+        <string>Nom</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Prénom</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Téléphone</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Email</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>id</string>
+       </property>
+      </column>
+     </widget>
+     <widget class="QPushButton" name="delete_customer">
+      <property name="geometry">
+       <rect>
+        <x>610</x>
+        <y>680</y>
+        <width>75</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton
+{
+	color: rgb(255, 255, 255);
+	background-color:rgb(235, 35, 37);
+	border-radius: 5px;
+	height:25px;
+}
+
+
+QPushButton:hover
+{
+	color: rgb(255, 255, 255);
+	background-color:rgb(220, 50, 52);
+	border-radius: 5px;
+	height:25px;
+}</string>
+      </property>
+      <property name="text">
+       <string>SUPPRIMER</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="success_customer">
+      <property name="geometry">
+       <rect>
+        <x>700</x>
+        <y>682</y>
+        <width>151</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(16, 207, 0);</string>
+      </property>
+      <property name="text">
+       <string>Client bien supprimé !</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="error_cutomer">
+      <property name="geometry">
+       <rect>
+        <x>700</x>
+        <y>680</y>
+        <width>321</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 77, 79);</string>
+      </property>
+      <property name="text">
+       <string>Vous devez sélectionnner un client à supprimer !</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="add_proprio_2">
+     <widget class="QLineEdit" name="email_proprio">
+      <property name="geometry">
+       <rect>
+        <x>480</x>
+        <y>380</y>
+        <width>351</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLineEdit {
+    background-color: #ffffff;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 4px 8px;
+    font-size: 11px;
+}
+
+/* Effet survol (hover) */
+QLineEdit:hover {
+    border: 1px solid rgb(0, 123, 255);
+}
+
+/* Focus (quand l'utilisateur clique dedans) */
+QLineEdit:focus {
+    border: 2px solid rgb(0, 123, 255);
+    background-color: #f0f8ff;
+}</string>
+      </property>
+      <property name="placeholderText">
+       <string>Email</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="success_add_proprio">
+      <property name="geometry">
+       <rect>
+        <x>580</x>
+        <y>550</y>
+        <width>171</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(16, 207, 0);</string>
+      </property>
+      <property name="text">
+       <string>Propriétaire bien ajouté !</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="name_proprio">
+      <property name="geometry">
+       <rect>
+        <x>480</x>
+        <y>279</y>
+        <width>351</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLineEdit {
+    background-color: #ffffff;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 4px 8px;
+    font-size: 11px;
+}
+
+/* Effet survol (hover) */
+QLineEdit:hover {
+    border: 1px solid rgb(0, 123, 255);
+}
+
+/* Focus (quand l'utilisateur clique dedans) */
+QLineEdit:focus {
+    border: 2px solid rgb(0, 123, 255);
+    background-color: #f0f8ff;
+}</string>
+      </property>
+      <property name="placeholderText">
+       <string>Nom</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="add_proprio_btn">
+      <property name="geometry">
+       <rect>
+        <x>620</x>
+        <y>510</y>
+        <width>75</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton
+{
+	color: rgb(255, 255, 255);
+	background-color:rgb(0, 123, 255);
+	border-radius: 5px;
+	height:20px;
+;
+}
+
+QPushButton:hover
+{
+	color: rgb(255, 255, 255);
+	background-color:rgb(0, 86, 210);
+	border-radius: 5px;
+	height:20px;
+}</string>
+      </property>
+      <property name="text">
+       <string>Ajouter</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="fisrt_name_proprio">
+      <property name="geometry">
+       <rect>
+        <x>480</x>
+        <y>330</y>
+        <width>351</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLineEdit {
+    background-color: #ffffff;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 4px 8px;
+    font-size: 11px;
+}
+
+/* Effet survol (hover) */
+QLineEdit:hover {
+    border: 1px solid rgb(0, 123, 255);
+}
+
+/* Focus (quand l'utilisateur clique dedans) */
+QLineEdit:focus {
+    border: 2px solid rgb(0, 123, 255);
+    background-color: #f0f8ff;
+}</string>
+      </property>
+      <property name="placeholderText">
+       <string>Prénom</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="phone_proprio">
+      <property name="geometry">
+       <rect>
+        <x>480</x>
+        <y>430</y>
+        <width>351</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLineEdit {
+    background-color: #ffffff;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 4px 8px;
+    font-size: 11px;
+}
+
+/* Effet survol (hover) */
+QLineEdit:hover {
+    border: 1px solid rgb(0, 123, 255);
+}
+
+/* Focus (quand l'utilisateur clique dedans) */
+QLineEdit:focus {
+    border: 2px solid rgb(0, 123, 255);
+    background-color: #f0f8ff;
+}</string>
+      </property>
+      <property name="placeholderText">
+       <string>Téléphone</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="error_add_proprio">
+      <property name="geometry">
+       <rect>
+        <x>510</x>
+        <y>550</y>
+        <width>291</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 77, 79);</string>
+      </property>
+      <property name="text">
+       <string>Vous devez remplir toutes les information !</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_20">
+      <property name="geometry">
+       <rect>
+        <x>550</x>
+        <y>200</y>
+        <width>231</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>16</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Ajouter un propriétaire</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="view_proprio">
+     <widget class="QPushButton" name="delete_proprio">
+      <property name="geometry">
+       <rect>
+        <x>580</x>
+        <y>680</y>
+        <width>75</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton
+{
+	color: rgb(255, 255, 255);
+	background-color:rgb(235, 35, 37);
+	border-radius: 5px;
+	height:25px;
+}
+
+
+QPushButton:hover
+{
+	color: rgb(255, 255, 255);
+	background-color:rgb(220, 50, 52);
+	border-radius: 5px;
+	height:25px;
+}</string>
+      </property>
+      <property name="text">
+       <string>SUPPRIMER</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="error_proprio">
+      <property name="geometry">
+       <rect>
+        <x>670</x>
+        <y>683</y>
+        <width>381</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 77, 79);</string>
+      </property>
+      <property name="text">
+       <string>Vous devez sélectionnner un propriétaire à supprimer !</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="success_proprio">
+      <property name="geometry">
+       <rect>
+        <x>670</x>
+        <y>680</y>
+        <width>141</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(16, 207, 0);</string>
+      </property>
+      <property name="text">
+       <string>Propriétaire bien supprimé !</string>
+      </property>
+     </widget>
+     <widget class="QTableWidget" name="proprio_table">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>110</y>
+        <width>1291</width>
+        <height>561</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QHeaderView::section {
+    background-color: rgb(0, 123, 255);
+    color: white;
+    padding: 4px;
+	border: 1px solid white;
+}
+
+/* Style pour les numéros de ligne (en-têtes verticales) */
+QHeaderView::section:vertical {
+    background-color: rgb(0, 123, 255);
+    color: white;
+}</string>
+      </property>
+      <attribute name="horizontalHeaderDefaultSectionSize">
+       <number>321</number>
+      </attribute>
+      <column>
+       <property name="text">
+        <string>Nom</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Prénom</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Téléphone</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Email</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>id</string>
+       </property>
+      </column>
+     </widget>
+    </widget>
    </widget>
    <widget class="QFrame" name="top_menu">
     <property name="enabled">
@@ -2353,6 +3092,31 @@ QPushButton:hover
       </widget>
      </item>
      <item>
+      <widget class="QPushButton" name="agenda">
+       <property name="styleSheet">
+        <string notr="true">QPushButton
+{
+	color: rgb(255, 255, 255);
+	background-color:rgb(0, 123, 255);
+	border-radius: 5px;
+	height:25px;
+}
+
+
+QPushButton:hover
+{
+	color: rgb(255, 255, 255);
+	background-color:rgb(0, 86, 210);
+	border-radius: 5px;
+	height:25px;
+}</string>
+       </property>
+       <property name="text">
+        <string>Agenda</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="add_user_home">
        <property name="styleSheet">
         <string notr="true">QPushButton
@@ -2403,6 +3167,31 @@ QPushButton:hover
       </widget>
      </item>
      <item>
+      <widget class="QPushButton" name="add_good">
+       <property name="styleSheet">
+        <string notr="true">QPushButton
+{
+	color: rgb(255, 255, 255);
+	background-color:rgb(0, 123, 255);
+	border-radius: 5px;
+	height:25px;
+}
+
+
+QPushButton:hover
+{
+	color: rgb(255, 255, 255);
+	background-color:rgb(0, 86, 210);
+	border-radius: 5px;
+	height:25px;
+}</string>
+       </property>
+       <property name="text">
+        <string>Ajouter un bien</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="view_home">
        <property name="styleSheet">
         <string notr="true">QPushButton
@@ -2428,7 +3217,7 @@ QPushButton:hover
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="agenda">
+      <widget class="QPushButton" name="add_customer">
        <property name="styleSheet">
         <string notr="true">QPushButton
 {
@@ -2448,12 +3237,12 @@ QPushButton:hover
 }</string>
        </property>
        <property name="text">
-        <string>Agenda</string>
+        <string>Ajouter un client</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="add_good">
+      <widget class="QPushButton" name="view_customers">
        <property name="styleSheet">
         <string notr="true">QPushButton
 {
@@ -2473,7 +3262,57 @@ QPushButton:hover
 }</string>
        </property>
        <property name="text">
-        <string>Ajouter un bien</string>
+        <string>Voir les clients</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="add_proprio">
+       <property name="styleSheet">
+        <string notr="true">QPushButton
+{
+	color: rgb(255, 255, 255);
+	background-color:rgb(0, 123, 255);
+	border-radius: 5px;
+	height:25px;
+}
+
+
+QPushButton:hover
+{
+	color: rgb(255, 255, 255);
+	background-color:rgb(0, 86, 210);
+	border-radius: 5px;
+	height:25px;
+}</string>
+       </property>
+       <property name="text">
+        <string>Ajouter un propriétaire</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="view_proprio_2">
+       <property name="styleSheet">
+        <string notr="true">QPushButton
+{
+	color: rgb(255, 255, 255);
+	background-color:rgb(0, 123, 255);
+	border-radius: 5px;
+	height:25px;
+}
+
+
+QPushButton:hover
+{
+	color: rgb(255, 255, 255);
+	background-color:rgb(0, 86, 210);
+	border-radius: 5px;
+	height:25px;
+}</string>
+       </property>
+       <property name="text">
+        <string>Voir les propriétaires</string>
        </property>
       </widget>
      </item>

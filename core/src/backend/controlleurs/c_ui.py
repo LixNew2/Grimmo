@@ -463,3 +463,100 @@ def delete_user(table, success, error, QMessageBox):
         if result[0]:
             table.removeRow(selected_item)
             handle_message(success)
+@private
+def get_customer():
+    if user.type_u == 0:
+        query = "SELECT * FROM CLIENT;"
+    else:
+        query = f"SELECT * FROM CLIENT WHERE CLIENT.uid_user = '{user.uid}';"
+
+    result  = database.query(query)
+    
+    if result[0]:
+        values = result[1].fetchall()
+        return values
+
+@private
+def set_customer(table, QTableWidgetItem):
+    table.setRowCount(0)
+
+    customers = get_customer()
+
+    if customers == None or customers == [] or len(customers) == 0:
+        return
+
+    print(customers)
+    n_column = len(customers[0]) 
+    n_row = len(customers)
+
+    table.setRowCount(n_row)
+    table.setColumnCount(n_column)
+
+    i_row = -1
+    i_column = -1
+
+    for customer in customers:
+        i_row += 1
+        i_column = -1 
+        print(customer)
+        for column in customer:
+            if customer.index(column) == 0:
+                table.setItem(i_row, 4, QTableWidgetItem(str(column)))
+                continue
+
+            i_column += 1
+        
+            table.setItem(i_row, i_column, QTableWidgetItem(str(column)))
+
+def customer_page(pages, table, QTableWidgetItem):
+    pages.setCurrentIndex(8)
+    set_customer(table, QTableWidgetItem)
+
+@private
+def get_proprio():
+    if user.type_u == 0:
+        query = "SELECT * FROM PROPRIETAIRE;"
+    else:
+        query = f"SELECT * FROM Proprietaire INNER JOIN Biens ON Proprietaire.uid_proprio = biens.uid_proprio WHERE biens.uid_user = '{user.uid}';"
+
+    result  = database.query(query)
+    
+    if result[0]:
+        values = result[1].fetchall()
+        return values
+
+@private
+def set_proprio(table, QTableWidgetItem):
+    pass
+
+def proprio_page(pages, table, QTableWidgetItem):
+    pages.setCurrentIndex(10)
+    set_proprio(table, QTableWidgetItem)
+
+def add_customer(last_name, first_name, email, phone, error, success):
+    if last_name.text() == "" or first_name.text() == "" or phone.text() == "" or email.text() == "":
+        handle_message(error)
+        return False
+
+    uuid4 = str(_generate_uuid4())
+    query = f"INSERT INTO client VALUES ('{uuid4}', '{last_name.text()}', '{first_name.text()}', '{email.text()}', '{phone.text()}', '{user.uid}');"
+    handle_message(success)
+    last_name.setText("")
+    first_name.setText("")
+    email.setText("")
+    phone.setText("")
+    return database.query(query)[0]
+
+def add_owner(last_name, first_name, email, phone, error, success):
+    if last_name.text() == "" or first_name.text() == "" or phone.text() == "" or email.text() == "":
+        handle_message(error)
+        return False
+
+    uuid4 = str(_generate_uuid4())
+    query = f"INSERT INTO proprietaire VALUES ('{uuid4}', '{last_name.text()}', '{first_name.text()}', '{email.text()}', '{phone.text()}');"
+    handle_message(success)
+    last_name.setText("")
+    first_name.setText("")
+    email.setText("")
+    phone.setText("")
+    return database.query(query)[0]

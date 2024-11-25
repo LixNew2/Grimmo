@@ -1,7 +1,7 @@
 import sys, os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..')))
 
-from core.src.backend.controlleurs.c_ui import login, add_user, disconnect, add_good, add_event, home_page, goods_page, set_events, tab_clicked, delete_good, delete_event, users_page, delete_user
+from core.src.backend.controlleurs.c_ui import login, add_user, disconnect, add_good, add_event, home_page, goods_page, set_events, tab_clicked, delete_good, delete_event, users_page, delete_user, customer_page, proprio_page, add_customer, add_owner
 import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QLineEdit, QLabel, QComboBox, QRadioButton, QStackedWidget, QFrame, QSpinBox, QCalendarWidget, QTableWidget, QTableWidgetItem, QTabWidget, QPlainTextEdit, QTimeEdit, QMessageBox
 from PyQt5 import uic
@@ -36,6 +36,10 @@ class UI(QMainWindow):
         self.good_table_home = self.findChild(QTableWidget, "good_table_home")
         self.aganda_table_home = self.findChild(QTableWidget, "aganda_table_home")
         self.view_user = self.findChild(QPushButton, "view_user")
+        self.view_proprio = self.findChild(QPushButton, "view_proprio_2")
+        self.view_customers = self.findChild(QPushButton, "view_customers")
+        self.add_proprio = self.findChild(QPushButton, "add_proprio")
+        self.add_customer = self.findChild(QPushButton, "add_customer")
         
         #Add Agent
         self.add_user_btn = self.findChild(QPushButton, "add_user_btn")
@@ -65,7 +69,6 @@ class UI(QMainWindow):
         self.succes_delete_good = self.findChild(QLabel, "delete_good_success")
         self.error_delete_good = self.findChild(QLabel, "delete_good_error")
 
-
         #Calendar
         self.calendar = self.findChild(QCalendarWidget, "calendar")
         self.event_title = self.findChild(QLineEdit, "calendar_title")
@@ -92,6 +95,36 @@ class UI(QMainWindow):
         self.delete_user_success = self.findChild(QLabel, "delete_user_success")
         self.delete_user_error = self.findChild(QLabel, "delete_user_error")
 
+        #View Customers
+        self.table_customer = self.findChild(QTableWidget, "table_customer")
+        self.success_customer = self.findChild(QLabel, "success_customer")
+        self.error_cutomer = self.findChild(QLabel, "error_cutomer")
+        self.delete_customer = self.findChild(QPushButton, "delete_customer")
+
+        #View Proprio
+        self.proprio_table = self.findChild(QTableWidget, "proprio_table")
+        self.success_proprio = self.findChild(QLabel, "success_proprio")
+        self.error_proprio = self.findChild(QLabel, "error_proprio")
+        self.delete_proprio = self.findChild(QPushButton, "delete_proprio")
+
+        #Add Customer
+        self.add_customer_btn = self.findChild(QPushButton, "add_customer_btn")
+        self.success_add_customer = self.findChild(QLabel, "success_add_customer")
+        self.phone_customer = self.findChild(QLineEdit, "phone_customer")
+        self.name_customer = self.findChild(QLineEdit, "name_customer") 
+        self.error_add_customer = self.findChild(QLabel, "error_add_customer") 
+        self.email_customer = self.findChild(QLineEdit, "email_customer")
+        self.first_name_customer = self.findChild(QLineEdit, "first_name_customer")
+
+        #Add Proprio
+        self.success_add_proprio = self.findChild(QLabel, "success_add_proprio")
+        self.phone_proprio = self.findChild(QLineEdit, "phone_proprio")
+        self.name_proprio = self.findChild(QLineEdit, "name_proprio")
+        self.fisrt_name_proprio = self.findChild(QLineEdit, "fisrt_name_proprio")
+        self.error_add_proprio = self.findChild(QLabel, "error_add_proprio")
+        self.email_proprio = self.findChild(QLineEdit, "email_proprio")
+        self.add_proprio_btn = self.findChild(QPushButton, "add_proprio_btn")
+
         #Actions
         self.home.clicked.connect(lambda : home_page(self.pages, self.good_table_home, self.aganda_table_home, QTableWidgetItem, self.add_user_home, self.view_user))
         self.connect_to_ldap_btn.clicked.connect(lambda : login(self.username_login.text(), self.password_login.text(), self.pages, self.username, self.menu, self.good_table_home, self.aganda_table_home, QTableWidgetItem, self.add_user_home, self.error_login, self.view_user))
@@ -111,7 +144,13 @@ class UI(QMainWindow):
         self.delete_event_btn.clicked.connect(lambda : delete_event(self.agenda_table, self.error_delete_event, self.succes_delete_event, QMessageBox))
         self.view_user.clicked.connect(lambda : users_page(self.pages, self.user_table, QTableWidgetItem))
         self.delete_user_btn.clicked.connect(lambda : delete_user(self.user_table, self.delete_user_success, self.delete_user_error, QMessageBox))
-        
+        self.add_customer.clicked.connect(lambda : self.pages.setCurrentIndex(7))
+        self.view_customers.clicked.connect(lambda : customer_page(self.pages, self.table_customer, QTableWidgetItem))
+        self.add_proprio.clicked.connect(lambda : self.pages.setCurrentIndex(9))
+        self.view_proprio.clicked.connect(lambda : proprio_page(self.pages, self.proprio_table, QTableWidgetItem))
+        self.add_customer_btn.clicked.connect(lambda : add_customer(self.name_customer, self.first_name_customer, self.phone_customer, self.email_customer, self.error_add_customer, self.success_add_customer))
+        self.add_proprio_btn.clicked.connect(lambda : add_owner(self.name_proprio, self.fisrt_name_proprio, self.phone_proprio, self.email_proprio, self.error_add_proprio, self.success_add_proprio))
+
         #Display
         self.menu.hide()
         self.pages.setCurrentIndex(0)
@@ -134,6 +173,17 @@ class UI(QMainWindow):
         self.delete_user_success.hide()
         self.delete_user_error.hide()
         self.user_table.hideColumn(5)
+        self.success_customer.hide()
+        self.error_cutomer.hide()
+        self.table_customer.hideColumn(4)
+        self.success_proprio.hide()
+        self.error_proprio.hide()
+        #self.proprio_table.hideColumn(5)
+        self.success_add_customer.hide()
+        self.error_add_customer.hide()
+        self.success_add_proprio.hide()
+        self.error_add_proprio.hide()
+
 
         #Show App
         self.show()
