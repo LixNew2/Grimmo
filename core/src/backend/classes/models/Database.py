@@ -21,17 +21,20 @@ class Database:
             self.CONN.autocommit = True
             self.cursor = self.CONN.cursor()
             return True
-        except:
+        except Exception as e:
+            print(e)
             return False
 
     def query(self, query) -> list[Union[bool,object]]:
+        if not self.CONN or self.CONN.closed:
+            return [False, "Connection to the Database is closed"]
         try:
             self.cursor.execute(query)
             return [True, self.cursor]
         except Exception as e:
             self.CONN.rollback()
             return [False, e]
-        
+
     def disconnect(self) -> None:
         try:
             self.CONN.close()

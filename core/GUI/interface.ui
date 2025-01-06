@@ -47,7 +47,7 @@ QPushButton:hover
      </font>
     </property>
     <property name="currentIndex">
-     <number>4</number>
+     <number>5</number>
     </property>
     <widget class="QWidget" name="login">
      <widget class="QLabel" name="title">
@@ -442,8 +442,8 @@ QHeaderView::section:vertical {
      <widget class="QLabel" name="label_4">
       <property name="geometry">
        <rect>
-        <x>480</x>
-        <y>220</y>
+        <x>250</x>
+        <y>310</y>
         <width>55</width>
         <height>16</height>
        </rect>
@@ -460,8 +460,8 @@ QHeaderView::section:vertical {
      <widget class="QLabel" name="label_5">
       <property name="geometry">
        <rect>
-        <x>480</x>
-        <y>270</y>
+        <x>250</x>
+        <y>360</y>
         <width>91</width>
         <height>16</height>
        </rect>
@@ -478,8 +478,8 @@ QHeaderView::section:vertical {
      <widget class="QLineEdit" name="add_ville_add_bien">
       <property name="geometry">
        <rect>
-        <x>480</x>
-        <y>191</y>
+        <x>250</x>
+        <y>281</y>
         <width>321</width>
         <height>21</height>
        </rect>
@@ -512,8 +512,8 @@ QLineEdit:focus {
      <widget class="QLineEdit" name="add_rue_add_bien">
       <property name="geometry">
        <rect>
-        <x>480</x>
-        <y>240</y>
+        <x>250</x>
+        <y>330</y>
         <width>321</width>
         <height>22</height>
        </rect>
@@ -546,8 +546,8 @@ QLineEdit:focus {
      <widget class="QLineEdit" name="add_postal_add_bien">
       <property name="geometry">
        <rect>
-        <x>480</x>
-        <y>290</y>
+        <x>250</x>
+        <y>380</y>
         <width>321</width>
         <height>22</height>
        </rect>
@@ -580,8 +580,8 @@ QLineEdit:focus {
      <widget class="QLabel" name="label_6">
       <property name="geometry">
        <rect>
-        <x>480</x>
-        <y>330</y>
+        <x>720</x>
+        <y>242</y>
         <width>91</width>
         <height>16</height>
        </rect>
@@ -598,8 +598,8 @@ QLineEdit:focus {
      <widget class="QLabel" name="label_7">
       <property name="geometry">
        <rect>
-        <x>480</x>
-        <y>400</y>
+        <x>720</x>
+        <y>302</y>
         <width>55</width>
         <height>16</height>
        </rect>
@@ -616,8 +616,8 @@ QLineEdit:focus {
      <widget class="QLabel" name="label_8">
       <property name="geometry">
        <rect>
-        <x>480</x>
-        <y>460</y>
+        <x>720</x>
+        <y>362</y>
         <width>111</width>
         <height>16</height>
        </rect>
@@ -634,8 +634,8 @@ QLineEdit:focus {
      <widget class="QLabel" name="label_9">
       <property name="geometry">
        <rect>
-        <x>480</x>
-        <y>170</y>
+        <x>250</x>
+        <y>260</y>
         <width>55</width>
         <height>16</height>
        </rect>
@@ -652,8 +652,8 @@ QLineEdit:focus {
      <widget class="QRadioButton" name="location_add_bien">
       <property name="geometry">
        <rect>
-        <x>580</x>
-        <y>518</y>
+        <x>820</x>
+        <y>420</y>
         <width>61</width>
         <height>20</height>
        </rect>
@@ -665,8 +665,8 @@ QLineEdit:focus {
      <widget class="QRadioButton" name="acheter_add_bien">
       <property name="geometry">
        <rect>
-        <x>660</x>
-        <y>518</y>
+        <x>900</x>
+        <y>420</y>
         <width>95</width>
         <height>20</height>
        </rect>
@@ -681,8 +681,8 @@ QLineEdit:focus {
      <widget class="QComboBox" name="add_type_add_bien">
       <property name="geometry">
        <rect>
-        <x>480</x>
-        <y>350</y>
+        <x>720</x>
+        <y>262</y>
         <width>321</width>
         <height>25</height>
        </rect>
@@ -746,8 +746,8 @@ QComboBox QAbstractItemView {
      <widget class="QSpinBox" name="nbr_room_add_bien">
       <property name="geometry">
        <rect>
-        <x>481</x>
-        <y>480</y>
+        <x>721</x>
+        <y>382</y>
         <width>321</width>
         <height>22</height>
        </rect>
@@ -800,7 +800,7 @@ QSpinBox::editor {
       <property name="geometry">
        <rect>
         <x>600</x>
-        <y>640</y>
+        <y>610</y>
         <width>93</width>
         <height>28</height>
        </rect>
@@ -830,8 +830,8 @@ QPushButton:hover
      <widget class="QLabel" name="mois_label">
       <property name="geometry">
        <rect>
-        <x>810</x>
-        <y>540</y>
+        <x>1050</x>
+        <y>442</y>
         <width>71</width>
         <height>21</height>
        </rect>
@@ -850,8 +850,8 @@ QPushButton:hover
      <widget class="QSpinBox" name="add_surface_add_bien">
       <property name="geometry">
        <rect>
-        <x>480</x>
-        <y>420</y>
+        <x>720</x>
+        <y>322</y>
         <width>321</width>
         <height>22</height>
        </rect>
@@ -903,8 +903,8 @@ QSpinBox::editor {
      <widget class="QSpinBox" name="price_entry_add_bien">
       <property name="geometry">
        <rect>
-        <x>480</x>
-        <y>540</y>
+        <x>720</x>
+        <y>442</y>
         <width>321</width>
         <height>22</height>
        </rect>
@@ -956,8 +956,8 @@ QSpinBox::editor {
      <widget class="QLabel" name="label_14">
       <property name="geometry">
        <rect>
-        <x>810</x>
-        <y>422</y>
+        <x>1050</x>
+        <y>324</y>
         <width>55</width>
         <height>16</height>
        </rect>
@@ -997,7 +997,7 @@ QSpinBox::editor {
       <property name="geometry">
        <rect>
         <x>490</x>
-        <y>680</y>
+        <y>660</y>
         <width>321</width>
         <height>16</height>
        </rect>
@@ -1018,7 +1018,7 @@ QSpinBox::editor {
       <property name="geometry">
        <rect>
         <x>600</x>
-        <y>680</y>
+        <y>660</y>
         <width>101</width>
         <height>20</height>
        </rect>
@@ -1038,8 +1038,8 @@ QSpinBox::editor {
      <widget class="QLabel" name="label_18">
       <property name="geometry">
        <rect>
-        <x>480</x>
-        <y>520</y>
+        <x>720</x>
+        <y>422</y>
         <width>41</width>
         <height>16</height>
        </rect>
@@ -1056,8 +1056,8 @@ QSpinBox::editor {
      <widget class="QComboBox" name="owner_combo_box">
       <property name="geometry">
        <rect>
-        <x>480</x>
-        <y>600</y>
+        <x>490</x>
+        <y>550</y>
         <width>321</width>
         <height>22</height>
        </rect>
@@ -1103,8 +1103,8 @@ QComboBox QAbstractItemView {
      <widget class="QLabel" name="label_21">
       <property name="geometry">
        <rect>
-        <x>480</x>
-        <y>580</y>
+        <x>490</x>
+        <y>530</y>
         <width>81</width>
         <height>16</height>
        </rect>
@@ -1116,6 +1116,102 @@ QComboBox QAbstractItemView {
       </property>
       <property name="text">
        <string>Propriétaire :</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="image_btn">
+      <property name="geometry">
+       <rect>
+        <x>250</x>
+        <y>480</y>
+        <width>75</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton
+{
+	color: rgb(255, 255, 255);
+	background-color:rgb(0, 123, 255);
+	border-radius: 5px;
+	height:20px;
+;
+}
+
+QPushButton:hover
+{
+	color: rgb(255, 255, 255);
+	background-color:rgb(0, 86, 210);
+	border-radius: 5px;
+	height:20px;
+}</string>
+      </property>
+      <property name="text">
+       <string>Image</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="url">
+      <property name="geometry">
+       <rect>
+        <x>340</x>
+        <y>480</y>
+        <width>701</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_22">
+      <property name="geometry">
+       <rect>
+        <x>250</x>
+        <y>410</y>
+        <width>47</width>
+        <height>13</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Titre :</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="good_title">
+      <property name="geometry">
+       <rect>
+        <x>250</x>
+        <y>430</y>
+        <width>321</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLineEdit {
+    background-color: #ffffff;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 4px 8px;
+    font-size: 11px;
+}
+
+/* Effet survol (hover) */
+QLineEdit:hover {
+    border: 1px solid rgb(0, 123, 255);
+}
+
+/* Focus (quand l'utilisateur clique dedans) */
+QLineEdit:focus {
+    border: 2px solid rgb(0, 123, 255);
+    background-color: #f0f8ff;
+}</string>
+      </property>
+      <property name="placeholderText">
+       <string>Titre</string>
       </property>
      </widget>
     </widget>
@@ -1155,7 +1251,7 @@ QComboBox QAbstractItemView {
        </rect>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tab">
        <property name="styleSheet">
@@ -1674,7 +1770,7 @@ QPushButton:hover
       <property name="geometry">
        <rect>
         <x>850</x>
-        <y>695</y>
+        <y>690</y>
         <width>361</width>
         <height>16</height>
        </rect>
@@ -1693,11 +1789,34 @@ QPushButton:hover
        <string>Vous devez sélectionner un événement à supprimer !</string>
       </property>
      </widget>
+     <widget class="QLabel" name="edit_event_error">
+      <property name="geometry">
+       <rect>
+        <x>890</x>
+        <y>690</y>
+        <width>361</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 77, 79);</string>
+      </property>
+      <property name="text">
+       <string>Vous ne pouvez pas modifier cette colonne !</string>
+      </property>
+     </widget>
      <widget class="QLabel" name="delete_event_success">
       <property name="geometry">
        <rect>
         <x>960</x>
-        <y>695</y>
+        <y>690</y>
         <width>151</width>
         <height>16</height>
        </rect>
@@ -1716,6 +1835,29 @@ QPushButton:hover
        <string>Événement supprimé !</string>
       </property>
      </widget>
+     <widget class="QLabel" name="edit_event_success">
+      <property name="geometry">
+       <rect>
+        <x>960</x>
+        <y>690</y>
+        <width>151</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(16, 207, 0);</string>
+      </property>
+      <property name="text">
+       <string>Événement modifié !</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="view_bien">
      <widget class="QWidget" name="verticalLayoutWidget_4">
@@ -1723,7 +1865,7 @@ QPushButton:hover
        <rect>
         <x>0</x>
         <y>100</y>
-        <width>1281</width>
+        <width>1081</width>
         <height>571</height>
        </rect>
       </property>
@@ -1880,11 +2022,11 @@ QPushButton:hover
        <string>SUPPRIMER</string>
       </property>
      </widget>
-     <widget class="QLabel" name="delete_good_error">
+     <widget class="QLabel" name="edit_good_error">
       <property name="geometry">
        <rect>
         <x>760</x>
-        <y>682</y>
+        <y>680</y>
         <width>321</width>
         <height>20</height>
        </rect>
@@ -1900,7 +2042,7 @@ QPushButton:hover
        <string notr="true">color: rgb(255, 77, 79);</string>
       </property>
       <property name="text">
-       <string>Vous devez sélectionner un bien à supprimer !</string>
+       <string>Vous ne pouvez pas modifier cette colonne  !</string>
       </property>
      </widget>
      <widget class="QLabel" name="delete_good_success">
@@ -1924,6 +2066,148 @@ QPushButton:hover
       </property>
       <property name="text">
        <string>Bien supprimé !</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="edit_good_success">
+      <property name="geometry">
+       <rect>
+        <x>760</x>
+        <y>680</y>
+        <width>111</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(16, 207, 0);</string>
+      </property>
+      <property name="text">
+       <string>Bien modifié !</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="error_delete_good">
+      <property name="geometry">
+       <rect>
+        <x>760</x>
+        <y>680</y>
+        <width>361</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 77, 79);</string>
+      </property>
+      <property name="text">
+       <string>Vous devez sélectionner un bien pour le supprimer !</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_23">
+      <property name="geometry">
+       <rect>
+        <x>1132</x>
+        <y>290</y>
+        <width>111</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>16</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Statistiques</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_24">
+      <property name="geometry">
+       <rect>
+        <x>1090</x>
+        <y>350</y>
+        <width>131</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Moyenne de vue par mois :</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="avg_view_per_month">
+      <property name="geometry">
+       <rect>
+        <x>1230</x>
+        <y>352</y>
+        <width>61</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>0</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_26">
+      <property name="geometry">
+       <rect>
+        <x>1090</x>
+        <y>380</y>
+        <width>131</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Nombre de vue sur le mois : </string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_27">
+      <property name="geometry">
+       <rect>
+        <x>1090</x>
+        <y>410</y>
+        <width>131</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Nombre de vue total :</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="view_of_the_month">
+      <property name="geometry">
+       <rect>
+        <x>1230</x>
+        <y>378</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>0</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="total_of_view">
+      <property name="geometry">
+       <rect>
+        <x>1210</x>
+        <y>410</y>
+        <width>81</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>0</string>
       </property>
      </widget>
     </widget>
@@ -2062,6 +2346,52 @@ QPushButton:hover
        <string>Utilisateur supprimé !</string>
       </property>
      </widget>
+     <widget class="QLabel" name="edit_user_success">
+      <property name="geometry">
+       <rect>
+        <x>720</x>
+        <y>680</y>
+        <width>141</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(16, 207, 0);</string>
+      </property>
+      <property name="text">
+       <string>Utilisateur modifié !</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="edit_user_error">
+      <property name="geometry">
+       <rect>
+        <x>720</x>
+        <y>680</y>
+        <width>351</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 77, 79);</string>
+      </property>
+      <property name="text">
+       <string>Vous ne pouvez pas modifier cette colonne !</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="add_agent">
      <widget class="QLineEdit" name="phone_add_user">
@@ -2129,7 +2459,7 @@ QLineEdit:focus {
       <property name="geometry">
        <rect>
         <x>470</x>
-        <y>480</y>
+        <y>550</y>
         <width>381</width>
         <height>23</height>
        </rect>
@@ -2194,7 +2524,7 @@ QLineEdit:focus {
       <property name="geometry">
        <rect>
         <x>510</x>
-        <y>520</y>
+        <y>590</y>
         <width>381</width>
         <height>13</height>
        </rect>
@@ -2215,7 +2545,7 @@ QLineEdit:focus {
       <property name="geometry">
        <rect>
         <x>470</x>
-        <y>430</y>
+        <y>470</y>
         <width>381</width>
         <height>23</height>
        </rect>
@@ -2340,7 +2670,7 @@ QLineEdit:focus {
       <property name="geometry">
        <rect>
         <x>600</x>
-        <y>520</y>
+        <y>590</y>
         <width>131</width>
         <height>16</height>
        </rect>
@@ -2357,13 +2687,47 @@ QLineEdit:focus {
        <string>Utilisateur ajouté !</string>
       </property>
      </widget>
+     <widget class="QLineEdit" name="email_add_user">
+      <property name="geometry">
+       <rect>
+        <x>470</x>
+        <y>430</y>
+        <width>381</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLineEdit {
+    background-color: #ffffff;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 4px 8px;
+    font-size: 11px;
+}
+
+/* Effet survol (hover) */
+QLineEdit:hover {
+    border: 1px solid rgb(0, 123, 255);
+}
+
+/* Focus (quand l'utilisateur clique dedans) */
+QLineEdit:focus {
+    border: 2px solid rgb(0, 123, 255);
+    background-color: #f0f8ff;
+}</string>
+      </property>
+      <property name="placeholderText">
+       <string>Email</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="add_customer_2">
      <widget class="QPushButton" name="add_customer_btn">
       <property name="geometry">
        <rect>
         <x>620</x>
-        <y>520</y>
+        <y>550</y>
         <width>75</width>
         <height>23</height>
        </rect>
@@ -2529,9 +2893,9 @@ QLineEdit:focus {
      <widget class="QLabel" name="label_19">
       <property name="geometry">
        <rect>
-        <x>590</x>
+        <x>510</x>
         <y>210</y>
-        <width>161</width>
+        <width>301</width>
         <height>41</height>
        </rect>
       </property>
@@ -2545,13 +2909,16 @@ QLineEdit:focus {
       <property name="text">
        <string>Ajouter un client</string>
       </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
      </widget>
      <widget class="QLabel" name="success_add_customer">
       <property name="geometry">
        <rect>
-        <x>600</x>
-        <y>560</y>
-        <width>131</width>
+        <x>590</x>
+        <y>600</y>
+        <width>231</width>
         <height>21</height>
        </rect>
       </property>
@@ -2572,8 +2939,8 @@ QLineEdit:focus {
      <widget class="QLabel" name="error_add_customer">
       <property name="geometry">
        <rect>
-        <x>510</x>
-        <y>560</y>
+        <x>520</x>
+        <y>600</y>
         <width>291</width>
         <height>16</height>
        </rect>
@@ -2590,6 +2957,40 @@ QLineEdit:focus {
       </property>
       <property name="text">
        <string>Vous devez remplir toutes les information !</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="password">
+      <property name="geometry">
+       <rect>
+        <x>480</x>
+        <y>490</y>
+        <width>351</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLineEdit {
+    background-color: #ffffff;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 4px 8px;
+    font-size: 11px;
+}
+
+/* Effet survol (hover) */
+QLineEdit:hover {
+    border: 1px solid rgb(0, 123, 255);
+}
+
+/* Focus (quand l'utilisateur clique dedans) */
+QLineEdit:focus {
+    border: 2px solid rgb(0, 123, 255);
+    background-color: #f0f8ff;
+}</string>
+      </property>
+      <property name="placeholderText">
+       <string>Mot de passe</string>
       </property>
      </widget>
     </widget>
@@ -2721,6 +3122,52 @@ QPushButton:hover
       </property>
       <property name="text">
        <string>Vous devez sélectionnner un client à supprimer !</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="edit_customer_error">
+      <property name="geometry">
+       <rect>
+        <x>700</x>
+        <y>680</y>
+        <width>321</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 77, 79);</string>
+      </property>
+      <property name="text">
+       <string>Vous ne pouvez pas modifier cette colonne !</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="edit_customer_success">
+      <property name="geometry">
+       <rect>
+        <x>700</x>
+        <y>680</y>
+        <width>151</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(16, 207, 0);</string>
+      </property>
+      <property name="text">
+       <string>Client modifié !</string>
       </property>
      </widget>
     </widget>
@@ -3088,6 +3535,52 @@ QHeaderView::section:vertical {
         <string>id</string>
        </property>
       </column>
+     </widget>
+     <widget class="QLabel" name="edit_proprio_sucess">
+      <property name="geometry">
+       <rect>
+        <x>670</x>
+        <y>680</y>
+        <width>141</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(16, 207, 0);</string>
+      </property>
+      <property name="text">
+       <string>Propriétaire modifié !</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="proprio_edit_error">
+      <property name="geometry">
+       <rect>
+        <x>670</x>
+        <y>680</y>
+        <width>381</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 77, 79);</string>
+      </property>
+      <property name="text">
+       <string>Vous ne pouvez pas modifier cette colonne !</string>
+      </property>
      </widget>
     </widget>
    </widget>

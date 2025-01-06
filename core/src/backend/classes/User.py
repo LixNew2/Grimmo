@@ -9,3 +9,4 @@ class User:
     first_name : str
     phone : str
     type_u : int
+    access_token : str

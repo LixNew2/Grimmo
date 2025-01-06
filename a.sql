@@ -1,1 +1,3 @@
-DELETE FROM USERS WHERE uid_user ='58ec2032-6cb1-4ebe-9a8c-20bbaeadf456';
+delete from superviser where uid_user != '';
+delete from biens where id_bien != '';
+delete from client where uid != '';
