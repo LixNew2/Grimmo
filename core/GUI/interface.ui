@@ -59,7 +59,7 @@ QPushButton:hover
      </font>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="login">
      <widget class="QLabel" name="title">
@@ -150,6 +150,9 @@ QLineEdit:focus {
     background-color: #f0f8ff;
 }</string>
       </property>
+      <property name="echoMode">
+       <enum>QLineEdit::Password</enum>
+      </property>
       <property name="placeholderText">
        <string>Mot de passe</string>
       </property>
@@ -236,8 +239,8 @@ QLineEdit:focus {
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>635</width>
-            <height>607</height>
+            <width>98</width>
+            <height>28</height>
            </rect>
           </property>
           <widget class="QTableWidget" name="good_table_home">
@@ -353,8 +356,8 @@ QHeaderView::section:vertical {
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>632</width>
-              <height>605</height>
+              <width>98</width>
+              <height>28</height>
              </rect>
             </property>
             <widget class="QTableWidget" name="aganda_table_home">
