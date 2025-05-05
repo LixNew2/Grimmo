@@ -1,5 +1,6 @@
 from ldap3 import Server, Connection, ALL, MODIFY_ADD, MODIFY_REPLACE
 import time
+
 class LDAPServer:
     """
     This class is used to interact with an LDAP server

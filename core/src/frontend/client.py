@@ -3,7 +3,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../.
 
 from core.src.backend.controlleurs.c_ui import login, add_user, disconnect, add_good, add_event, home_page, goods_page, set_events, tab_clicked, delete_good, delete_event, users_page, delete_user, customer_page, owner_page, add_customer, add_good_page, delete_customer, delete_owner, edit_row, get_stats
 import sys
-from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QLineEdit, QLabel, QComboBox, QRadioButton, QStackedWidget, QFrame, QSpinBox, QCalendarWidget, QTableWidget, QTableWidgetItem, QTabWidget, QPlainTextEdit, QTimeEdit, QMessageBox, QFileDialog 
+from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QLineEdit, QLabel, QComboBox, QRadioButton, QStackedWidget, QFrame, QSpinBox, QCalendarWidget, QTableWidget, QTableWidgetItem, QTabWidget, QPlainTextEdit, QTimeEdit, QMessageBox, QFileDialog
 from PyQt5 import uic
 from PyQt5.QtCore import QTime, QDate
 
@@ -66,6 +66,8 @@ class UI(QMainWindow):
         self.month_label = self.findChild(QLabel, "mois_label")
         self.btn_add_event = self.findChild(QTabWidget, 'btn_add_event')
         self.error_add_good = self.findChild(QLabel, "error_add_goods")
+        self.error_add_goods_2 = self.findChild(QLabel, "error_add_goods_2")
+        self.error_add_goods_3 = self.findChild(QLabel, "error_add_goods_3")
         self.succes_add_good = self.findChild(QLabel, "succes_add_good")
         self.succes_delete_good = self.findChild(QLabel, "delete_good_success")
         self.error_delete_good = self.findChild(QLabel, "error_delete_good")
@@ -144,7 +146,7 @@ class UI(QMainWindow):
         self.add_good_home.clicked.connect(lambda : add_good_page(self.pages, self.owner_combo_box))
         self.add_user_btn.clicked.connect(lambda : add_user(self.last_name_add_user, self.first_name_add_user, self.password_add_user, self.phone_add_user, self.groups_add_user, self.error_add_agent, self.succes_add_user, self.email_add_user))
         self.disconnect_btn.clicked.connect(lambda : disconnect(self.menu, self.pages))
-        self.btn_add_add_good.clicked.connect(lambda : add_good(self.city_add_good, self.street_add_good, self.postal_add_good, self.type_add_good, self.surface_add_good, self.nbr_room_add_good, self.buy_add_good, self.price_entry_add_bien, self.error_add_good, self.succes_add_good, self.owner_combo_box, self.url, self.title))
+        self.btn_add_add_good.clicked.connect(lambda : add_good(self.city_add_good, self.street_add_good, self.postal_add_good, self.type_add_good, self.surface_add_good, self.nbr_room_add_good, self.buy_add_good, self.price_entry_add_bien, self.error_add_good, self.succes_add_good, self.owner_combo_box, self.url, self.title, self.error_add_goods_2, self.error_add_goods_3))
         self.buy_add_good.clicked.connect(lambda : self.month_label.hide())
         self.rental_add_good.clicked.connect(lambda : self.month_label.show())
         self.calendar.clicked.connect(self.handle_date)
@@ -213,6 +215,8 @@ class UI(QMainWindow):
         self.edit_user_error.hide()
         self.add_proprio.hide()
         self.view_proprio.hide()
+        self.error_add_goods_2.hide()
+        self.error_add_goods_3.hide()
 
         #Show App
         self.show()

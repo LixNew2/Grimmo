@@ -54,7 +54,7 @@ def _add_user_to_db(uuid4, last_name, first_name, phone, type, password, email) 
         "email":email,
         "phone":phone,
         "password":password,
-        "type":3,
+        "type": 3 if type == 0 else 2,
     }
 
     result = requests.post(f"{API}add_user", json=data, headers={'Authorization': f'Bearer {user.access_token}','Content-Type': 'application/json'})
@@ -92,7 +92,7 @@ def disconnect(menu, pages):
     database = None
     user = None
 
-def add_good(city, address, cp, type_good, surface, nbr_room, commendable_purshasable, price, error, success, combo, url, title) -> bool:
+def add_good(city, address, cp, type_good, surface, nbr_room, commendable_purshasable, price, error, success, combo, url, title, error2, error3) -> bool:
     """
     If buy is checked commendable_purshasable = 1
     If rent is checked commendable_purshasable = 0
@@ -101,6 +101,16 @@ def add_good(city, address, cp, type_good, surface, nbr_room, commendable_pursha
 
     if city.text() == "" or address.text() == "" or cp.text() == "" or type_good.currentText() == "" or nbr_room.value() == 0 or surface.value() == 0 or price.value() == 0:
         handle_message(error)
+        return False
+    
+    try:
+        int(cp.text())
+    except ValueError:
+        handle_message(error2)
+        return False
+    
+    if(not combo.itemData(combo.currentIndex())):
+        handle_message(error3)
         return False
 
     if type_good.currentText() == "Appartement":
@@ -131,7 +141,7 @@ def add_good(city, address, cp, type_good, surface, nbr_room, commendable_pursha
             "img":img_bytes,
             'titre':title.text()
         }
-    
+
     result = requests.post(f"{API}add_good", json=data, headers={'Authorization': f'Bearer {user.access_token}','Content-Type': 'application/json'})
     print(result.text)
     print(result.status_code)
@@ -309,7 +319,7 @@ def set_goods(table, QTableWidgetItem):
                     column = "Achetable"
 
             if i_column == 8:
-                query = F"SELECT nom, prenom FROM CLIENT WHERE CLIENT.uid_proprio = '{column}';"
+                query = F"SELECT nom, prenom FROM CLIENT WHERE CLIENT.uid = '{column}';"
                 result = database.query(query)
                 if result[0]:
                     values = result[1].fetchall()[0]
@@ -330,14 +340,13 @@ def login(LDAP_CNUSER, LDAP_PASSWORD, pages, username, menu, table1, table2, QTa
         #Get user data
         groups = ldap_server.get_groups(LDAP_CNUSER)
         uid = ldap_server.get_uid(LDAP_CNUSER)
-        
+        print(uid)
         user = User(LDAP_CNUSER, groups, uid, None, None, None, 1, None)
 
         """last_name, first_name = LDAP_CNUSER.split(" ")
         user_id = f"{first_name[0]}{last_name}"
         print(user_id)"""
         
-        print(LDAP_CNUSER, LDAP_PASSWORD)
         #Init the database with postgres account
         database = Database(CONFIG["POSTGRES"]["host"],
             CONFIG["POSTGRES"]["database"],
@@ -395,6 +404,7 @@ def login(LDAP_CNUSER, LDAP_PASSWORD, pages, username, menu, table1, table2, QTa
         return False
     
     menu.show()
+
     username.setText(user.first_name + " " + user.last_name)
     home_page(pages, table1, table2, QTableWidgetItem, add_user_home, view_user)
     print("UID : ", user.uid)
@@ -558,8 +568,9 @@ def delete_user(table, success, error, QMessageBox):
     print(uuid4)
     print(selected_item)
     if(ldap_server.delete_user(table.item(selected_item, 4).text())):
-        query = f"DELETE FROM USERS WHERE USERS.uid_user = '{uuid4}'; REVOKE ALL PRIVILEGES ON ALL TABLES IN SCHEMA public FROM {table.item(selected_item, 4).text()}; DROP USER {table.item(selected_item, 4).text()};"
+        query = f"DELETE FROM SUPERVISER WHERE SUPERVISER.uid_user = '{uuid4}'; DELETE FROM EVENT WHERE EVENT.uid_user = '{uuid4}'; DELETE FROM BIENS WHERE BIENS.uid_user = '{uuid4}'; DELETE FROM CLIENT WHERE CLIENT.uid_user = '{uuid4}'; DELETE FROM USERS WHERE USERS.uid_user = '{uuid4}';"
         result = database.query(query)
+        print(result)
         if result[0]:
             table.removeRow(selected_item)
             handle_message(success)
@@ -877,8 +888,6 @@ def get_stats(row, avg, month, total, table):
     else:
         avg_value = total_value / len(datas['data'])
     
-    
-
     avg.setText(str(round(avg_value, 2)))
     month.setText(str(month_view))
     total.setText(str(total_value))
